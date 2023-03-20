@@ -1,2 +1,1 @@
 require("gehaktmolen")
-print("hello")

@@ -9,4 +9,6 @@ return require('packer').startup(function(use)
   use 'BurntSushi/ripgrep'
   use({ 'rose-pine/neovim', as = 'rose-pine' })
   use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate'})
+  use('Mofiqul/vscode.nvim')
+  use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
 end) 

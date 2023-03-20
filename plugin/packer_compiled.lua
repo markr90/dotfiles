@@ -74,10 +74,20 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["bufferline.nvim"] = {
+    loaded = true,
+    path = "C:\\Users\\MarkRaaijmakers\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\bufferline.nvim",
+    url = "https://github.com/akinsho/bufferline.nvim"
+  },
   ["nvim-treesitter"] = {
     loaded = true,
     path = "C:\\Users\\MarkRaaijmakers\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
+  },
+  ["nvim-web-devicons"] = {
+    loaded = true,
+    path = "C:\\Users\\MarkRaaijmakers\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-web-devicons",
+    url = "https://github.com/nvim-tree/nvim-web-devicons"
   },
   ["packer.nvim"] = {
     loaded = true,
@@ -103,6 +113,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "C:\\Users\\MarkRaaijmakers\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["vscode.nvim"] = {
+    loaded = true,
+    path = "C:\\Users\\MarkRaaijmakers\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\vscode.nvim",
+    url = "https://github.com/Mofiqul/vscode.nvim"
   }
 }
 
