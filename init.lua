@@ -1,0 +1,2 @@
+require("gehaktmolen")
+print("hello")
