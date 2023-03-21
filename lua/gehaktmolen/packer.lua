@@ -11,6 +11,7 @@ return require('packer').startup(function(use)
   use { "catppuccin/nvim", as = "catppuccin" }
   use('theprimeagen/harpoon')
   use('mbbill/undotree')
+  use('jose-elias-alvarez/null-ls.nvim')
   use {
       'VonHeikemen/lsp-zero.nvim',
       branch = 'v1.x',
