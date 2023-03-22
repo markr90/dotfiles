@@ -3,20 +3,23 @@ local servers = {
   jsonls = {},
   omnisharp = {
     formattingOptions = {
-        newLinesForBracesInTypes = true,
+      newLinesForBracesInTypes = true,
     }
   },
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },
+      diagnostics = {
+        globals = { 'vim' },
+      },
     },
   },
 }
 
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
   -- for LSP related items. It sets the mode, buffer and description for us each time.
   local nmap = function(keys, func, desc)
     if desc then
@@ -43,6 +46,20 @@ local on_attach = function(_, bufnr)
   -- Lesser used LSP functionality
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
+  if client.supports_method("textDocument/formatting") then
+    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      group = augroup,
+      buffer = bufnr,
+      callback = function()
+        vim.lsp.buf.format()
+      end,
+    })
+    vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+      pattern = { "*" },
+      command = [[%s/\s\+$//e]],
+    })
+  end
   -- Create a command `:Format` local to the LSP buffer
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
@@ -123,21 +140,20 @@ cmp.setup {
 local null_ls = require 'null-ls'
 
 null_ls.setup {
-    debounce = 150,
-    autostart = true,
-    sources = {
-        null_ls.builtins.formatting.eslint_d,
-        null_ls.builtins.diagnostics.eslint_d,
-        null_ls.builtins.code_actions.eslint_d,
-    },
+  debounce = 150,
+  autostart = true,
+  sources = {
+    null_ls.builtins.formatting.eslint_d,
+    null_ls.builtins.diagnostics.eslint_d,
+    null_ls.builtins.code_actions.eslint_d,
+  }
 }
 
 vim.diagnostic.config({
-    virtual_text = true,
-    signs = true,
-    update_in_insert = false,
-    underline = true,
-    severity_sort = false,
-    float = true,
+  virtual_text = true,
+  signs = true,
+  update_in_insert = false,
+  underline = true,
+  severity_sort = false,
+  float = true,
 })
-
