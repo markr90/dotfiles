@@ -15,7 +15,8 @@ return require('lazy').setup({
   'tpope/vim-fugitive',
   'tpope/vim-sleuth',
   'lewis6991/gitsigns.nvim',
-  'feline-nvim/feline.nvim',
+  'nvim-lualine/lualine.nvim',
+  'petertriho/nvim-scrollbar',
   {
     'neovim/nvim-lspconfig',
     dependencies = {
