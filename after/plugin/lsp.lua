@@ -65,6 +65,7 @@ local on_attach = function(client, bufnr)
       group = augroup,
       buffer = bufnr,
       callback = function()
+        vim.cmd [[set eol]]
         vim.lsp.buf.format()
       end,
     })
