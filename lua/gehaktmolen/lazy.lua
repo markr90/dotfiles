@@ -18,6 +18,7 @@ return require('lazy').setup({
   'nvim-lualine/lualine.nvim',
   'petertriho/nvim-scrollbar',
   'numToStr/Comment.nvim',
+  'kylechui/nvim-surround',
   {
     'neovim/nvim-lspconfig',
     dependencies = {
