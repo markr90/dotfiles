@@ -14,6 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 return require('lazy').setup({
   'tpope/vim-fugitive',
   'tpope/vim-sleuth',
+  'lewis6991/gitsigns.nvim',
   {
     'neovim/nvim-lspconfig',
     dependencies = {
@@ -22,19 +23,21 @@ return require('lazy').setup({
       'jose-elias-alvarez/null-ls.nvim'
     },
   },
-  { -- Autocompletion
+  {
+    -- Autocompletion
     'hrsh7th/nvim-cmp',
-    dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip', 'hrsh7th/cmp-nvim-lsp-signature-help' },
+    dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip',
+      'hrsh7th/cmp-nvim-lsp-signature-help' },
   },
   {
-	'nvim-telescope/telescope.nvim',
-	version = '*',
-	dependencies = { 'nvim-lua/plenary.nvim' }
+    'nvim-telescope/telescope.nvim',
+    version = '*',
+    dependencies = { 'nvim-lua/plenary.nvim' }
   },
   {
-	"catppuccin/nvim",
-	name = "catppuccin",
-	priority = 1000,
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
   },
   {
     'nvim-treesitter/nvim-treesitter',
@@ -48,7 +51,7 @@ return require('lazy').setup({
   'theprimeagen/harpoon',
   {
     'akinsho/bufferline.nvim',
-	version = "*",
-	dependencies = { 'nvim-tree/nvim-web-devicons' }
+    version = "*",
+    dependencies = { 'nvim-tree/nvim-web-devicons' }
   }
 }, {})
