@@ -15,6 +15,7 @@ return require('lazy').setup({
   'tpope/vim-fugitive',
   'tpope/vim-sleuth',
   'lewis6991/gitsigns.nvim',
+  'feline-nvim/feline.nvim',
   {
     'neovim/nvim-lspconfig',
     dependencies = {
