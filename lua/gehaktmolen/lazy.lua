@@ -55,6 +55,7 @@ return require('lazy').setup({
   'theprimeagen/harpoon',
   {
     'akinsho/bufferline.nvim',
+    priority = 2000,
     version = "*",
     dependencies = { 'nvim-tree/nvim-web-devicons' }
   }
