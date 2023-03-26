@@ -1,9 +1,3 @@
-vim.cmd [[
-    sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=
-    sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn linehl= numhl=
-    sign define DiagnosticSignInfo text= texthl=DiagnosticSignInfo linehl= numhl=
-    sign define DiagnosticSignHint text=󰌶 texthl=DiagnosticSignHint linehl= numhl=
-]]
 local servers = {
   tsserver = {},
   jsonls = {},
@@ -108,6 +102,16 @@ local function lsp_setup()
       }
     end,
   }
+  local signs = require('gehaktmolen.constants').signs
+
+  vim.fn.sign_define("DiagnosticSignError",
+    { text = signs.error, texthl = "DiagnosticSignError", numhl = 'DiagnosticSignError' })
+  vim.fn.sign_define("DiagnosticSignWarn",
+    { text = signs.error, texthl = "DiagnosticSignWarn", numhl = 'DiagnosticSignWarn' })
+  vim.fn.sign_define("DiagnosticSignInfo",
+    { text = signs.error, texthl = "DiagnosticSignInfo", numhl = 'DiagnosticSignInfo' })
+  vim.fn.sign_define("DiagnosticSignHint",
+    { text = signs.error, texthl = "DiagnosticSignHint", numhl = 'DiagnosticSignHint' })
 
   vim.diagnostic.config({
     virtual_text = true,

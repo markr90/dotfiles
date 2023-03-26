@@ -1,5 +1,6 @@
 require("gehaktmolen.remap")
 require("gehaktmolen.lazy")
+require('gehaktmolen.constants')
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.tabstop = 4
