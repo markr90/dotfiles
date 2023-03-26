@@ -7,4 +7,9 @@ vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
 vim.opt.expandtab = true
 vim.opt.fixeol = true
-vim.keymap.set("n", "<SPACE>", "<Nop>", { noremap = true })
+vim.cmd [[
+augroup highlight_yank
+autocmd!
+au TextYankPost * silent! lua vim.highlight.on_yank({higroup="Visual", timeout=200})
+augroup END
+]]

@@ -55,8 +55,6 @@ local on_attach = function(client, bufnr)
   nmap('<leader>dn', vim.diagnostic.goto_next, '[D]iagnostic [N]ext')
   nmap('<leader>dp', vim.diagnostic.goto_prev, '[D]iagnostic [P]rev')
   nmap('<leader>dd', function() vim.diagnostic.open_float(nil, { focus = false }) end, 'Line [D]iagnostics')
-  nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-  nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
@@ -161,7 +159,7 @@ vim.diagnostic.config({
   signs = true,
   update_in_insert = false,
   underline = true,
-  severity_sort = false,
+  severity_sort = true,
   float = {
     focusable = false,
     style = 'minimal',
