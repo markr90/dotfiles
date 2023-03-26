@@ -1,6 +1,6 @@
 local function telescope_setup()
   local builtin = require('telescope.builtin')
-  vim.keymap.set('n', '<C-p>', builtin.find_files, {})
+  vim.keymap.set('n', '<C-p>', builtin.find_files, { noremap = true, desc = 'Search for files in project directory' })
   vim.keymap.set('n', '<leader>gg', builtin.live_grep, {})
   vim.keymap.set('n', '<leader>/', function()
     -- You can pass additional configuration to telescope to change theme, layout, etc.
