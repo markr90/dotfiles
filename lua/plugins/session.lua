@@ -17,7 +17,13 @@ return {
           if vim.bo.filetype ~= 'git'
             and not vim.bo.filetype ~= 'gitcommit'
           then
+            local view = require('nvim-tree.view')
+            local was_open = view.is_visible()
             session_manager.autosave_session()
+            local api = require('nvim-tree.api')
+            if was_open then
+              api.tree.open()
+            end
           end
         end
       })
