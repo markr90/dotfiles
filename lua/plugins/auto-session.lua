@@ -6,17 +6,17 @@ return {
         log_level = 'error',
         pre_save_cmds = {
           function()
-            vim.cmd([[ Neotree close ]])
+            vim.cmd([[ NvimTreeClose ]])
           end,
         },
         post_save_cmds = {
           function()
-            vim.cmd([[ Neotree show ]])
+            vim.cmd([[ NvimTreeOpen ]])
           end,
         },
         post_restore_cmds = {
           function()
-            vim.cmd([[ Neotree show ]])
+            vim.cmd([[ NvimTreeOpen ]])
           end,
         },
       })
