@@ -43,7 +43,7 @@ local on_attach = function(client, bufnr)
   nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
   nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-  nmap('gr', vim.lsp.buf.references, '[G]oto [R]eferences')
+  nmap('<leader>gr', vim.lsp.buf.references, '[G]oto [R]eferences')
   nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
   nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
   nmap('<leader>dn', vim.diagnostic.goto_next, '[D]iagnostic [N]ext')
@@ -67,7 +67,6 @@ local on_attach = function(client, bufnr)
       buffer = bufnr,
       callback = function()
         vim.cmd [[set eol]]
-        -- vim.lsp.buf.format()
       end,
     })
     vim.api.nvim_create_autocmd({ "BufWritePre" }, {

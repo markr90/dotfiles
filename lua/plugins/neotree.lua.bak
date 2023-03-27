@@ -10,7 +10,19 @@ return {
       vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
       vim.keymap.set('n', '<leader>ew', ':Neotree show focus<CR>')
       vim.keymap.set('n', '<leader>eq', ':Neotree close<CR>')
-      require('neo-tree').setup({})
+      require('neo-tree').setup({
+        follow_current_file = true,
+        window = {
+          width = 35,
+        },
+        filesystem = {
+          hide_dotfiles = false,
+          hide_by_name = {
+            'node_modules',
+            '.git',
+          },
+        },
+      })
     end
   }
 }

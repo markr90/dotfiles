@@ -11,6 +11,7 @@ local function setup_theme()
         enabled = true,
       },
       nvimtree = true,
+      neotree = true,
     }
   })
 

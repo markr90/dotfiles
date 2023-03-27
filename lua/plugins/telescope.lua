@@ -10,7 +10,6 @@ local function telescope_setup()
     })
   end, { desc = '[/] Fuzzily search in current buffer' })
   vim.keymap.set('n', '<leader>ds', builtin.diagnostics, {})
-  -- vim.keymap.set('n', '<leader>gr', builtin.lsp_references, {})
 end
 
 return {
