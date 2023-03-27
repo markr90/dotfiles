@@ -1,3 +1,14 @@
+local function store_tree_in_global_state()
+  local manager = require("neo-tree.sources.manager")
+  local view = require('neo-tree.ui.renderer')
+  vim.g.ISTREEOPEN = view.tree_is_visible(manager.get_state('filesystem')) and 1 or 0
+end
+
+local function restore_tree_from_global_state()
+  if vim.g.ISTREEOPEN == 1 then
+    require('neo-tree.sources.manager').show('filesystem')
+  end
+end
 return {
   {
     'Shatur/neovim-session-manager',
@@ -17,15 +28,18 @@ return {
           if vim.bo.filetype ~= 'git'
             and not vim.bo.filetype ~= 'gitcommit'
           then
-            local view = require('nvim-tree.view')
-            local was_open = view.is_visible()
+            store_tree_in_global_state()
             session_manager.autosave_session()
-            local api = require('nvim-tree.api')
-            if was_open then
-              api.tree.open()
-            end
+            restore_tree_from_global_state()
           end
         end
+      })
+      vim.api.nvim_create_autocmd({ 'User' }, {
+        pattern = "SessionLoadPost",
+        group = config_group,
+        callback = function()
+          restore_tree_from_global_state()
+        end,
       })
       vim.api.nvim_create_user_command('SessSave', function(_)
         vim.cmd([[SessionManager save_current_session]])
