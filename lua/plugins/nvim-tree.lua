@@ -54,7 +54,9 @@ return {
     'nvim-tree/nvim-tree.lua',
     config = function()
       require('nvim-tree').setup(options)
-      vim.api.nvim_create_autocmd({ 'VimEnter' }, { callback = open_nvim_tree })
+      vim.keymap.set('n', '<leader>ew', ':NvimTreeOpen<CR>:NvimTreeFocus<CR>')
+      vim.keymap.set('n', '<leader>eq', ':NvimTreeClose<CR>')
+      -- vim.api.nvim_create_autocmd({ 'VimEnter' }, { callback = open_nvim_tree })
       vim.api.nvim_create_autocmd({ 'BufEnter' }, {
         pattern = 'NvimTree*',
         callback = function()
