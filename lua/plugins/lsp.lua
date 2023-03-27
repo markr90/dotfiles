@@ -49,6 +49,7 @@ local on_attach = function(client, bufnr)
   nmap('<leader>dn', vim.diagnostic.goto_next, '[D]iagnostic [N]ext')
   nmap('<leader>dp', vim.diagnostic.goto_prev, '[D]iagnostic [P]rev')
   nmap('<leader>dd', function() vim.diagnostic.open_float(nil, { focus = false }) end, 'Line [D]iagnostics')
+  nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
 
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
