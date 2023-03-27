@@ -113,21 +113,19 @@ local function lsp_setup()
   vim.fn.sign_define("DiagnosticSignHint",
     { text = signs.error, texthl = "DiagnosticSignHint", numhl = 'DiagnosticSignHint' })
 
-  vim.diagnostic.config({
-    virtual_text = true,
-    signs = true,
-    update_in_insert = false,
-    underline = true,
-    severity_sort = true,
-    float = {
-      focusable = false,
-      style = 'minimal',
-      border = 'single',
-      source = 'always',
-      header = '',
-      prefix = '',
-    },
-  })
+  local _border = require('gehaktmolen.constants').border
+
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+    vim.lsp.handlers.hover, {
+      border = _border
+    }
+  )
+
+  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+    vim.lsp.handlers.signature_help, {
+      border = _border
+    }
+  )
 end
 
 return {

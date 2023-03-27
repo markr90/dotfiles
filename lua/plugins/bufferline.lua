@@ -2,7 +2,7 @@ local function setup_bufferline()
   local signs = require('gehaktmolen.constants').signs
   require('bufferline').setup({
     options = {
-      highlights = require("catppuccin.groups.integrations.bufferline").get(),
+      highlights = require("catppuccin.groups.integrations.bufferline").get({}),
       diagnostics = "nvim_lsp",
       ---@diagnostic disable-next-line: unused-local
       diagnostics_indicator = function(count, level, diag_dict)

@@ -5,4 +5,5 @@ return {
     info = '',
     hint = '󰌶',
   },
+  border = 'single',
 }
