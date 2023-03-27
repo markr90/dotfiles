@@ -10,6 +10,7 @@ local function setup_theme()
       native_lsp = {
         enabled = true,
       },
+      nvimtree = true,
       neotree = true,
     }
   })

@@ -5,7 +5,7 @@ local opts = {
     component_separators = { left = '', right = '' },
     section_separators = { left = '', right = '' },
     disabled_filetypes = {
-      statusline = { 'neo-tree' },
+      statusline = { 'neo-tree', 'NvimTree' },
       winbar = {},
     },
     ignore_focus = {},
