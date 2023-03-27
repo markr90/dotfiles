@@ -58,6 +58,8 @@ local on_attach = function(client, bufnr)
   -- Lesser used LSP functionality
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
+  local lsp_format_modifications = require('lsp-format-modifications')
+  lsp_format_modifications.attach(client, bufnr, { format_on_save = true })
   if client.supports_method("textDocument/formatting") then
     vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
     vim.api.nvim_create_autocmd("BufWritePre", {
@@ -65,7 +67,7 @@ local on_attach = function(client, bufnr)
       buffer = bufnr,
       callback = function()
         vim.cmd [[set eol]]
-        vim.lsp.buf.format()
+        -- vim.lsp.buf.format()
       end,
     })
     vim.api.nvim_create_autocmd({ "BufWritePre" }, {
@@ -138,6 +140,7 @@ return {
       'jose-elias-alvarez/null-ls.nvim',
       'hrsh7th/nvim-cmp',
       'hrsh7th/cmp-nvim-lsp',
+      'joechrisellis/lsp-format-modifications.nvim',
     },
     config = lsp_setup,
   }
