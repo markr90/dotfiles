@@ -1,1 +1,1 @@
-require("gehaktmolen")
+require('gehaktmolen')
