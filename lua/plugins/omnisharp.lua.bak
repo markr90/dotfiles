@@ -1,0 +1,11 @@
+return {
+  {
+    'OmniSharp/omnisharp-vim',
+    dependencies = {
+      'puremourning/vimspector',
+    },
+    config = function()
+
+    end,
+  }
+}

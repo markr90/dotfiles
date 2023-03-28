@@ -12,13 +12,13 @@ return {
           color = '#585b70'
         },
         marks = {
-          Cursor = {
-            text = "■"
-          },
           Search = {
             color = "#ffffff"
           },
-        }
+        },
+        handlers = {
+          cursor = false,
+        },
       })
       require("scrollbar.handlers.search").setup({
         override_lens = function()
