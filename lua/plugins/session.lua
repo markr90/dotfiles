@@ -26,7 +26,7 @@ return {
         group = config_group,
         callback = function()
           if vim.bo.filetype ~= 'git'
-            and not vim.bo.filetype ~= 'gitcommit'
+            and vim.bo.filetype ~= 'gitcommit'
           then
             store_tree_in_global_state()
             session_manager.autosave_session()
