@@ -7,7 +7,18 @@ local opts = {
         'node_modules',
         '.git',
       },
-    }
+    },
+    window = {
+      mappings = {
+        ["<leader>st"] = function(state)
+          local node = state.tree:get_node()
+          if string.find(node.path, '.csproj') then
+            vim.g['PROJECTSTARTUPPATH'] = node.path
+            print('Startup path is now: ' .. vim.g['PROJECTSTARTUPPATH'])
+          end
+        end
+      },
+    },
   },
   window = {
     width = 35,

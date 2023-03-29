@@ -45,7 +45,7 @@ return {
               "stacks",
               "watches",
             },
-            size = 40, -- 40 columns
+            size = 60,
             position = "left",
           },
           {
@@ -53,7 +53,7 @@ return {
               "repl",
               "console",
             },
-            size = 0.25, -- 25% of total lines
+            size = 0.30,
             position = "bottom",
           },
         },
@@ -74,8 +74,8 @@ return {
           },
         },
         floating = {
-          max_height = nil, -- These can be integers or a float between 0 and 1.
-          max_width = nil, -- Floats will be treated as percentage of your screen.
+          max_height = nil,  -- These can be integers or a float between 0 and 1.
+          max_width = nil,   -- Floats will be treated as percentage of your screen.
           border = "single", -- Border style. Can be "single", "double" or "rounded"
           mappings = {
             close = { "q", "<Esc>" },
@@ -88,7 +88,9 @@ return {
         }
       })
 
-
+      vim.keymap.set('n', '<leader>ze', function() require('dapui').eval(nil, { enter = true }) end, { noremap = true })
+      vim.keymap.set('n', '<leader>zs', function() require('dapui').float_element('scopes', { enter = true }) end,
+        { noremap = true })
       dap.listeners.after.event_initialized["dapui_config"] = function()
         dapui.open()
       end

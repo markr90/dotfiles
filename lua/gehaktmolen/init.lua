@@ -8,6 +8,7 @@ vim.opt.softtabstop = 4
 vim.opt.expandtab = true
 vim.opt.fixeol = true
 vim.opt.termguicolors = true
+vim.cmd([[ set clipboard+=unnamedplus ]])
 vim.cmd [[
   augroup highlight_yank
   autocmd!
