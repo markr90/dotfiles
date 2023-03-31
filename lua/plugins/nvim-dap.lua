@@ -20,20 +20,22 @@ local netcore_config = {
 }
 
 vim.g.dotnet_get_startup_path = function()
-  if vim.g['PROJECTSTARTUPPATH'] ~= nil then
-    return vim.g['PROJECTSTARTUPPATH']
+  if vim.g['project_startup_path'] ~= nil then
+    return vim.g['project_startup_path']
   else
-    vim.g['PROJECTSTARTUPPATH'] = vim.fn.input('Path to project: ', vim.fn.getcwd(), 'file')
-    return vim.g['PROJECTSTARTUPPATH']
+    vim.g['project_startup_path'] = vim.fn.input('Path to project: ', vim.fn.getcwd(), 'file')
+    return vim.g['project_startup_path']
   end
 end
 
 vim.g.dotnet_get_dll_path = function()
   local project_path = vim.g.dotnet_get_startup_path()
-  local project_name = project_path:match(".*[/|\\](.*)%.csproj")
   local project_directory = project_path:match('(.*[/|\\])')
-  local dll_path = project_directory .. 'bin/Debug/net6.0/' .. project_name .. '.dll'
-  return dll_path
+  if vim.g['project_dll_path'] == nil then
+    local dll_path = vim.fn.input('path to dll: ', project_directory .. 'bin/Debug/', 'file');
+    vim.g['project_dll_path'] = dll_path
+  end
+  return vim.g['project_dll_path']
 end
 
 vim.g.dotnet_build_project = function()

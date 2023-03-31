@@ -4,8 +4,5 @@ return {
     dependencies = {
       'RishabhRD/popfix',
     },
-    -- config = function()
-    --   require('cheat-sheet').setup({})
-    -- end,
   }
 }

@@ -13,8 +13,11 @@ local opts = {
         ["<leader>st"] = function(state)
           local node = state.tree:get_node()
           if string.find(node.path, '.csproj') then
-            vim.g['PROJECTSTARTUPPATH'] = node.path
-            print('Startup path is now: ' .. vim.g['PROJECTSTARTUPPATH'])
+            if (vim.g['project_startup_path'] ~= node.path) then
+              vim.g['project_dll_path'] = nil
+            end
+            vim.g['project_startup_path'] = node.path
+            print('Startup path is now: ' .. vim.g['project_startup_path'])
           end
         end
       },

@@ -29,36 +29,17 @@ return {
           if vim.bo.filetype ~= 'git'
             and vim.bo.filetype ~= 'gitcommit'
           then
-            -- store_tree_in_global_state()
             session_manager.autosave_session()
           end
         end
       })
-      -- vim.api.nvim_create_autocmd({ 'User' }, {
-      --   pattern = "SessionLoadPost",
-      --   group = config_group,
-      --   callback = function()
-      --     restore_tree_from_global_state()
-      --   end,
-      -- })
       vim.api.nvim_create_autocmd({ 'User' }, {
         pattern = "SessionSavePre",
         group = config_group,
         callback = function()
-          -- check if session has already saved to global variable
-          -- if not vim.g['ISTREEOPEN'] then
-          --   store_tree_in_global_state()
-          -- end
           require('neo-tree.sources.manager').close('filesystem')
         end,
       })
-      -- vim.api.nvim_create_autocmd({ 'User' }, {
-      --   pattern = "SessionSavePost",
-      --   group = config_group,
-      --   callback = function()
-      --     restore_tree_from_global_state()
-      --   end,
-      -- })
       vim.api.nvim_create_user_command('SessSave', function(_)
         vim.cmd([[SessionManager save_current_session]])
       end, { desc = 'Saves current session' })
