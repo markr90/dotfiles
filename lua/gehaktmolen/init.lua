@@ -11,7 +11,7 @@ else
 	vim.opt.expandtab = true
 	vim.opt.fixeol = true
 	vim.opt.termguicolors = true
-  vim.opt.hidden = false
+  vim.opt.hidden = true
 	vim.cmd([[ set clipboard+=unnamedplus ]])
 	vim.cmd [[
 	  augroup highlight_yank

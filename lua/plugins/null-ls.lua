@@ -16,5 +16,6 @@ return {
   {
     'jose-elias-alvarez/null-ls.nvim',
     config = null_ls_setup,
+    enabled = require('gehaktmolen.constants').isWindows
   }
 }

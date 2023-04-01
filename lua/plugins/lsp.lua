@@ -1,10 +1,8 @@
 local servers = {
   tsserver = {},
   jsonls = {},
-  omnisharp = {
-    formattingOptions = {
-      newLinesForBracesInTypes = true,
-    }
+  rust_analyzer = {
+    inlayHints = false,
   },
   lua_ls = {
     Lua = {
@@ -25,6 +23,9 @@ local servers = {
   },
 }
 
+if not require('gehaktmolen.constants').isWindows() then
+  servers.eslint = {}
+end
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 -- LSP settings.
@@ -136,7 +137,6 @@ return {
     dependencies = {
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
-      'jose-elias-alvarez/null-ls.nvim',
       'hrsh7th/nvim-cmp',
       'hrsh7th/cmp-nvim-lsp',
       'joechrisellis/lsp-format-modifications.nvim',
