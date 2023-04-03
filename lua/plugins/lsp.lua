@@ -30,7 +30,6 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(client, bufnr)
-  print(client.name);
   -- for LSP related items. It sets the mode, buffer and description for us each time.
   local nmap = function(keys, func, desc)
     if desc then
