@@ -1,9 +1,11 @@
 local servers = {
   tsserver = {},
   jsonls = {},
+  eslint = {},
   rust_analyzer = {
     inlayHints = false,
   },
+  omnisharp = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
@@ -47,8 +49,8 @@ local on_attach = function(client, bufnr)
   nmap('<leader>gr', vim.lsp.buf.references, '[G]oto [R]eferences')
   nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
   nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
-  nmap('<leader>dn', vim.diagnostic.goto_next, '[D]iagnostic [N]ext')
-  nmap('<leader>dp', vim.diagnostic.goto_prev, '[D]iagnostic [P]rev')
+  nmap(']d', vim.diagnostic.goto_next, '[D]iagnostic [N]ext')
+  nmap('[d', vim.diagnostic.goto_prev, '[D]iagnostic [P]rev')
   nmap('<leader>dd', function() vim.diagnostic.open_float(nil, { focus = false }) end, 'Line [D]iagnostics')
   nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
 
@@ -59,8 +61,8 @@ local on_attach = function(client, bufnr)
   -- Lesser used LSP functionality
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
-  local lsp_format_modifications = require('lsp-format-modifications')
-  lsp_format_modifications.attach(client, bufnr, { format_on_save = true })
+  -- local lsp_format_modifications = require('lsp-format-modifications')
+  -- lsp_format_modifications.attach(client, bufnr, { format_on_save = true })
   if client.supports_method("textDocument/formatting") then
     vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
     vim.api.nvim_create_autocmd("BufWritePre", {
@@ -68,6 +70,7 @@ local on_attach = function(client, bufnr)
       buffer = bufnr,
       callback = function()
         vim.cmd [[set eol]]
+        vim.lsp.buf.format()
       end,
     })
     vim.api.nvim_create_autocmd({ "BufWritePre" }, {
