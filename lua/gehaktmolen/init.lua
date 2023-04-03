@@ -36,4 +36,14 @@ else
 		prefix = '',
 	  },
 	})
+  -- global formatting rules
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    callback = function()
+      vim.cmd [[set eol]]
+    end,
+  })
+  vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+    pattern = { "*" },
+    command = [[%s/\s\+$//e]],
+  })
 end
