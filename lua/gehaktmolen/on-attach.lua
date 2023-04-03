@@ -6,7 +6,7 @@ local lsp_formatting = function(bufnr)
   vim.lsp.buf.format({
     filter = function(client)
       -- apply whatever logic you want (in this example, we'll only use null-ls)
-      return client.name == "null-ls"
+      return client.name == "null-ls" or client.name == 'omnisharp' or client.name == 'csharp_ls'
     end,
     bufnr = bufnr,
   })
@@ -70,6 +70,9 @@ local on_attach = function(client, bufnr)
     })
   end
 
+  if client.name == 'tsserver' then
+    client.server_capabilities.documentFormattingProvider = false
+  end
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })

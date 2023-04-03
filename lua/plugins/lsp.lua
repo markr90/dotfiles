@@ -1,14 +1,15 @@
+local pid = vim.fn.getpid()
+-- On linux/darwin if using a release build, otherwise under scripts/OmniSharp(.Core)(.cmd)
+-- local omnisharp_bin = "C:\\Users\\MarkRaaijmakers\\AppData\\Local\nvim-data\\mason\\packages\\omnisharp"
+local omnisharp_bin = "C:/Users/MarkRaaijmakers/AppData/Local/nvim-data/mason/packages/omnisharp/OmniSharp.exe"
+-- on Windows
+-- local omnisharp_bin = "/path/to/omnisharp/OmniSharp.exe"
 local servers = {
   tsserver = {},
   jsonls = {},
   angularls = {},
   rust_analyzer = {
     inlayHints = false,
-  },
-  omnisharp = {
-    formattingOptions = {
-      newLinesForBracesInTypes = true,
-    }
   },
   lua_ls = {
     Lua = {
@@ -52,6 +53,17 @@ local function lsp_setup()
         settings = servers[server_name],
       }
     end,
+    ["omnisharp"] = function()
+      require('lspconfig').omnisharp.setup({
+        capabilities = capabilities,
+        on_attach = require('gehaktmolen.on-attach').on_attach,
+        settings = servers["omnisharp"],
+        handlers = {
+          ["textDocument/definition"] = require('omnisharp_extended').handler,
+        },
+        cmd = { omnisharp_bin, '--languageserver', '--hostPID', tostring(pid) },
+      })
+    end,
   }
   local signs = require('gehaktmolen.constants').signs
 
@@ -88,6 +100,7 @@ return {
       'hrsh7th/nvim-cmp',
       'hrsh7th/cmp-nvim-lsp',
       'joechrisellis/lsp-format-modifications.nvim',
+      'Hoffs/omnisharp-extended-lsp.nvim',
     },
     config = lsp_setup,
   }

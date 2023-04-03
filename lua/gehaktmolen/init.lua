@@ -46,4 +46,7 @@ else
     pattern = { "*" },
     command = [[%s/\s\+$//e]],
   })
+  vim.api.nvim_create_user_command('Bd', function(_)
+    vim.cmd([[bp|bd #]])
+  end, { desc = 'delete buffer and open previous' })
 end
