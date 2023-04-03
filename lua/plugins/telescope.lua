@@ -1,22 +1,41 @@
-local function telescope_setup()
-  local builtin = require('telescope.builtin')
-  vim.keymap.set('n', '<C-p>', builtin.find_files, { noremap = true, desc = 'Search for files in project directory' })
-  vim.keymap.set('n', '<leader>gg', builtin.live_grep, {})
-  vim.keymap.set('n', '<leader>/', function()
-    -- You can pass additional configuration to telescope to change theme, layout, etc.
-    require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-      winblend = 10,
-      previewer = false,
-    })
-  end, { desc = '[/] Fuzzily search in current buffer' })
-  vim.keymap.set('n', '<leader>ds', builtin.diagnostics, {})
+local function fuzzy_find_in_buffer() -- You can pass additional configuration to telescope to change theme, layout, etc.
+  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+    winblend = 10,
+    previewer = false,
+  })
 end
 
 return {
   {
     'nvim-telescope/telescope.nvim',
     version = '*',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    config = telescope_setup,
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+    config = function()
+      require('telescope').setup({})
+    end,
+    keys = {
+      { '<leader>gg', function() require('telescope.builtin').live_grep() end,   desc = 'Search in files for text' },
+      {
+        '<C-p>',
+        function() require('telescope.builtin').find_files() end,
+        desc =
+        'Search for files in project directory'
+      },
+      { '<leader>/',  fuzzy_find_in_buffer,                                      desc = 'Fuzzy find in buffer' },
+      { '<leader>ds', function() require('telescope.builtin').diagnostics() end, desc = 'Search diagnostics' },
+    },
+    init = function()
+      vim.api.nvim_create_autocmd('VimEnter', {
+        callback = function()
+          local bufferPath = vim.fn.expand('%:p')
+          if vim.fn.isdirectory(bufferPath) ~= 0 then
+            vim.api.nvim_buf_delete(0, { force = true })
+            require('telescope.builtin').find_files()
+          end
+        end,
+      })
+    end,
   },
 }

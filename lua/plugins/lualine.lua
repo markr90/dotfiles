@@ -45,5 +45,6 @@ return {
   {
     'nvim-lualine/lualine.nvim',
     opts = opts,
+    event = 'VeryLazy',
   }
 }

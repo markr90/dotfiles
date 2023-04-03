@@ -4,6 +4,7 @@ return {
     dependencies = {
       'mfussenegger/nvim-dap',
     },
+    keys = '<F5>',
     config = function()
       local dap, dapui = require("dap"), require("dapui")
 

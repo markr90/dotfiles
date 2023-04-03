@@ -4,5 +4,6 @@ return {
     config = function()
       require('fidget').setup({})
     end,
+    event = 'LspAttach',
   }
 }

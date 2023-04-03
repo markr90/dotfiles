@@ -4,5 +4,6 @@ return {
     dependencies = {
       'RishabhRD/popfix',
     },
+    cmd = 'Cheat',
   }
 }

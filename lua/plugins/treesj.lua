@@ -1,9 +1,10 @@
 return {
   'Wansmer/treesj',
   dependencies = { 'nvim-treesitter/nvim-treesitter' },
+  keys = {
+    { '<leader>m', function() require('treesj').toggle() end, desc = 'Toggle tree code line join' },
+  },
   config = function()
-    local treesj = require('treesj')
-    treesj.setup({})
-    vim.keymap.set('n', '<leader>m', treesj.toggle)
+    require('treesj').setup({})
   end,
 }

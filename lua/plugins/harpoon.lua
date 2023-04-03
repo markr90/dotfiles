@@ -15,5 +15,6 @@ return {
   {
     'theprimeagen/harpoon',
     config = harpoon_setup,
+    event = 'BufReadPost',
   }
 }

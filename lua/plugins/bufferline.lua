@@ -21,7 +21,7 @@ end
 return {
   {
     'akinsho/bufferline.nvim',
-    priority = 2000,
+    event = 'VeryLazy',
     version = "*",
     dependencies = {
       'nvim-tree/nvim-web-devicons',

@@ -8,6 +8,7 @@ local opts = {
         '.git',
       },
     },
+    hijack_netrw_behavior = 'open_current',
     window = {
       mappings = {
         ["<leader>st"] = function(state)
@@ -35,11 +36,13 @@ return {
       'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
       'MunifTanjim/nui.nvim',
     },
+    keys = {
+      { "<leader>ew", "<cmd>Neotree show focus<cr>", desc = "Neotree show" },
+      { "<leader>eq", "<cmd>Neotree close<cr>",      desc = "Neotree hide" },
+    },
     config = function()
       vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
-      vim.keymap.set('n', '<leader>ew', ':Neotree show focus<CR>')
-      vim.keymap.set('n', '<leader>eq', ':Neotree close<CR>')
       require('neo-tree').setup(opts)
-    end
+    end,
   }
 }

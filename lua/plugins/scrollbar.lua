@@ -4,6 +4,7 @@ return {
     dependencies = {
       'kevinhwang91/nvim-hlslens',
     },
+    event = { 'BufEnter' },
     config = function()
       require('scrollbar').setup({
         handle = {

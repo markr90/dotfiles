@@ -35,5 +35,6 @@ return {
       'joechrisellis/lsp-format-modifications.nvim',
     },
     config = null_ls_setup,
+    event = { 'BufReadPre', 'BufNewFile' },
   }
 }

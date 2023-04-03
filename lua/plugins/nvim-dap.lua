@@ -54,6 +54,7 @@ end
 return {
   {
     'mfussenegger/nvim-dap',
+    keys = '<F5',
     config = function()
       local dap = require('dap')
       dap.adapters.coreclr = netcore_adapter_config
