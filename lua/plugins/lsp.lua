@@ -2,7 +2,7 @@ local servers = {
   tsserver = {},
   jsonls = {},
   angularls = {},
-  eslint = {},
+  -- eslint = {},
   rust_analyzer = {
     inlayHints = false,
   },
@@ -62,15 +62,15 @@ local on_attach = function(client, bufnr)
     lsp_format_modifications.attach(client, bufnr, { format_on_save = true })
   end
   -- eslint fix on save
-  if client.name == 'eslint' then
-    vim.api.nvim_create_autocmd('BufWritePre', {
-      group = augroup,
-      buffer = bufnr,
-      callback = function()
-        vim.cmd([[EslintFixAll]])
-      end,
-    })
-  end
+  -- if client.name == 'eslint' then
+  --   vim.api.nvim_create_autocmd('BufWritePre', {
+  --     group = augroup,
+  --     buffer = bufnr,
+  --     callback = function()
+  --       vim.cmd([[EslintFixAll]])
+  --     end,
+  --   })
+  -- end
   -- global formatting rules
   if client.supports_method("textDocument/formatting") then
     vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
