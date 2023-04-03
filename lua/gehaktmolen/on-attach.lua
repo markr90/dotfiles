@@ -6,7 +6,7 @@ local lsp_formatting = function(bufnr)
   vim.lsp.buf.format({
     filter = function(client)
       -- apply whatever logic you want (in this example, we'll only use null-ls)
-      return client.name == "null-ls" or client.name == 'omnisharp' or client.name == 'csharp_ls'
+      return client.name == "null-ls" or client.name == 'omnisharp'
     end,
     bufnr = bufnr,
   })
@@ -46,19 +46,6 @@ local on_attach = function(client, bufnr)
     local lsp_format_modifications = require('lsp-format-modifications')
     lsp_format_modifications.attach(client, bufnr, { format_on_save = true })
   end
-  -- eslint fix on save
-  -- vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-  -- if client.name == 'eslint' then
-  --   vim.api.nvim_create_autocmd('BufWritePre', {
-  --     group = augroup,
-  --     buffer = bufnr,
-  --     callback = function()
-  --       vim.cmd([[EslintFixAll]])
-  --     end,
-  --   })
-  -- end
-  -- Create a command `:Format` local to the LSP buffer
-  --
   if client.supports_method("textDocument/formatting") then
     vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
     vim.api.nvim_create_autocmd("BufWritePre", {
