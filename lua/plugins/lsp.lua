@@ -1,6 +1,7 @@
 local servers = {
   tsserver = {},
   jsonls = {},
+  angularls = {},
   eslint = {},
   rust_analyzer = {
     inlayHints = false,
