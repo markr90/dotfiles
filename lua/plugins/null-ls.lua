@@ -25,7 +25,6 @@ local function null_ls_setup()
       null_ls.builtins.code_actions.eslint_d.with({ cwd = eslint_cwd() }),
     },
     on_attach = require('gehaktmolen.on-attach').on_attach,
-    root_dir = require("null-ls.utils").root_pattern(".git"),
   }
 end
 
