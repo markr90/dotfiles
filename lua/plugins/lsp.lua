@@ -25,9 +25,6 @@ local servers = {
   },
 }
 
-if not require('gehaktmolen.constants').isWindows() then
-  servers.eslint = {}
-end
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 -- LSP settings.
