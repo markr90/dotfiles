@@ -89,9 +89,9 @@ return {
         }
       })
 
-      vim.keymap.set('n', '<leader>ze', function() require('dapui').eval(nil, { enter = true }) end, { noremap = true })
+      vim.keymap.set('n', '<leader>ze', function() require('dapui').eval(nil, { enter = true }) end, { noremap = true, desc = 'Open debug evaluate screen' })
       vim.keymap.set('n', '<leader>zs', function() require('dapui').float_element('scopes', { enter = true }) end,
-        { noremap = true })
+        { noremap = true, desc = 'Open debug scopes screen' })
       dap.listeners.after.event_initialized["dapui_config"] = function()
         dapui.open()
       end

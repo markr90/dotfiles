@@ -54,7 +54,9 @@ end
 return {
   {
     'mfussenegger/nvim-dap',
-    keys = '<F5',
+    keys = {
+      { '<F5>', function() require('dap').continue() end, desc = 'Debug start / continue' },
+    },
     config = function()
       local dap = require('dap')
       dap.adapters.coreclr = netcore_adapter_config
@@ -62,16 +64,15 @@ return {
       dap.configurations.cs = netcore_config
       dap.configurations.fsharp = netcore_config
 
-      vim.keymap.set('n', '<F5>', require('dap').continue, { noremap = true })
-      vim.keymap.set('n', '<F10>', require('dap').step_over, { noremap = true })
-      vim.keymap.set('n', '<F11>', require('dap').step_into, { noremap = true })
-      vim.keymap.set('n', '<F12>', require('dap').step_out, { noremap = true })
-      vim.keymap.set('n', '<leader>b', require('dap').toggle_breakpoint, { noremap = true })
+      vim.keymap.set('n', '<F10>', require('dap').step_over, { noremap = true, desc = 'Debug step over' })
+      vim.keymap.set('n', '<F11>', require('dap').step_into, { noremap = true, desc = 'Debug step into'})
+      vim.keymap.set('n', '<F12>', require('dap').step_out, { noremap = true, desc = 'Debug step out' })
+      vim.keymap.set('n', '<leader>b', require('dap').toggle_breakpoint, { noremap = true, desc = 'Set breakpoint' })
       vim.keymap.set('n', '<leader>B',
-        function() require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, { noremap = true })
-      vim.keymap.set('n', '<leader>lp',
-        function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end, { noremap = true })
-      vim.keymap.set('n', '<leader>cb', require('dap').clear_breakpoints, { noremap = true })
+        function() require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, { noremap = true, desc = 'Set breakpoint condition' })
+      -- vim.keymap.set('n', '<leader>lp',
+      --   function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end, { noremap = true })
+      -- vim.keymap.set('n', '<leader>cb', require('dap').clear_breakpoints, { noremap = true })
       vim.api.nvim_create_user_command('Quitdebug', require('dap').terminate,
         { desc = 'Terminates the debugging session' })
     end,

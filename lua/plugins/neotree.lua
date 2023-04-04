@@ -11,7 +11,7 @@ local opts = {
     hijack_netrw_behavior = 'open_current',
     window = {
       mappings = {
-        ["<leader>st"] = function(state)
+        ["<leader>zs"] = function(state)
           local node = state.tree:get_node()
           if string.find(node.path, '.csproj') then
             if (vim.g['project_startup_path'] ~= node.path) then

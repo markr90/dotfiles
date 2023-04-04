@@ -16,15 +16,14 @@ return {
       require('telescope').setup({})
     end,
     keys = {
-      { '<leader>gg', function() require('telescope.builtin').live_grep() end,   desc = 'Search in files for text' },
+      { '<leader>fg', function() require('telescope.builtin').live_grep() end,   desc = 'Search in files for text' },
       {
         '<C-p>',
         function() require('telescope.builtin').find_files() end,
-        desc =
-        'Search for files in project directory'
+        desc = 'Search for files in project directory'
       },
-      { '<leader>/',  fuzzy_find_in_buffer,                                      desc = 'Fuzzy find in buffer' },
-      { '<leader>ds', function() require('telescope.builtin').diagnostics() end, desc = 'Search diagnostics' },
+      { '<leader>fb',  fuzzy_find_in_buffer,                                     desc = 'Fuzzy find in buffer' },
+      { '<leader>fd', function() require('telescope.builtin').diagnostics() end, desc = 'Search diagnostics' },
     },
     init = function()
       vim.api.nvim_create_autocmd('VimEnter', {
