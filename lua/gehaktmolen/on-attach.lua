@@ -2,15 +2,15 @@ local M = {}
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
 --
-local lsp_formatting = function(bufnr)
-  vim.lsp.buf.format({
-    filter = function(client)
-      -- apply whatever logic you want (in this example, we'll only use null-ls)
-      return client.name == "null-ls" or client.name == 'omnisharp'
-    end,
-    bufnr = bufnr,
-  })
-end
+-- local lsp_formatting = function(bufnr)
+--   vim.lsp.buf.format({
+--     filter = function(client)
+--       -- apply whatever logic you want (in this example, we'll only use null-ls)
+--       return client.name == "null-ls" or client.name == 'omnisharp'
+--     end,
+--     bufnr = bufnr,
+--   })
+-- end
 
 -- if you want to set up formatting on save, you can use this as a callback
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
@@ -42,24 +42,36 @@ local on_attach = function(client, bufnr)
   -- Lesser used LSP functionality
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
+  if client.name == 'tsserver' then
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
+  end
   if client.server_capabilities.documentRangeFormattingProvider then
     local lsp_format_modifications = require('lsp-format-modifications')
     lsp_format_modifications.attach(client, bufnr, { format_on_save = true })
   end
-  if client.supports_method("textDocument/formatting") then
+  if client.server_capabilities.documentFormattingProvider then
     vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
     vim.api.nvim_create_autocmd("BufWritePre", {
       group = augroup,
       buffer = bufnr,
       callback = function()
-        lsp_formatting(bufnr)
+        -- lsp_formatting(bufnr)
+        vim.lsp.buf.format()
+      end,
+    })
+  end
+  -- eslint fix on save
+  if client.name == 'eslint' then
+    vim.api.nvim_create_autocmd('BufWritePre', {
+      group = augroup,
+      buffer = bufnr,
+      callback = function()
+        vim.cmd([[EslintFixAll]])
       end,
     })
   end
 
-  if client.name == 'tsserver' then
-    client.server_capabilities.documentFormattingProvider = false
-  end
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })

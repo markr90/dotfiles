@@ -6,8 +6,8 @@ local omnisharp_bin = "C:/Users/MarkRaaijmakers/AppData/Local/nvim-data/mason/pa
 -- local omnisharp_bin = "/path/to/omnisharp/OmniSharp.exe"
 local servers = {
   tsserver = {},
+  eslint = {},
   jsonls = {},
-  angularls = {},
   rust_analyzer = {
     inlayHints = false,
   },
