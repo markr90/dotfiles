@@ -1,8 +1,14 @@
-local function fuzzy_find_in_buffer() -- You can pass additional configuration to telescope to change theme, layout, etc.
+local function fuzzy_find_in_current_buffer() -- You can pass additional configuration to telescope to change theme, layout, etc.
   require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-    winblend = 10,
     previewer = false,
   })
+end
+
+local function fuzzy_find_in_open_buffers() -- You can pass additional configuration to telescope to change theme, layout, etc.
+  require('telescope.builtin').live_grep(require('telescope.themes').get_dropdown({
+    layout_config = { width = 0.5 },
+    grep_open_files = true,
+  }))
 end
 
 return {
@@ -16,14 +22,31 @@ return {
       require('telescope').setup({})
     end,
     keys = {
-      { '<leader>fg', function() require('telescope.builtin').live_grep() end,   desc = 'Search in files for text' },
+      {
+        '<leader>fg',
+        function() require('telescope.builtin').live_grep() end,
+        desc = 'Search in files for text',
+      },
       {
         '<C-p>',
         function() require('telescope.builtin').find_files() end,
         desc = 'Search for files in project directory'
       },
-      { '<leader>fb',  fuzzy_find_in_buffer,                                     desc = 'Fuzzy find in buffer' },
-      { '<leader>fd', function() require('telescope.builtin').diagnostics() end, desc = 'Search diagnostics' },
+      {
+        '<leader>fB',
+        fuzzy_find_in_current_buffer,
+        desc = 'Fuzzy find in buffer',
+      },
+      {
+        '<leader>fb',
+        fuzzy_find_in_open_buffers,
+        desc = 'Fuzzy find in open buffers',
+      },
+      {
+        '<leader>fd',
+        function() require('telescope.builtin').diagnostics() end,
+        desc = 'Search diagnostics',
+      },
     },
     init = function()
       vim.api.nvim_create_autocmd('VimEnter', {

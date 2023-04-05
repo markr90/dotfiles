@@ -1,6 +1,12 @@
 return {
   {
     'Shatur/neovim-session-manager',
+    cmd = {
+      'SessSave',
+      'SessLoad',
+      'SessDelete',
+      'SessionLoadPre',
+    },
     dependencies = {
       'nvim-lua/plenary.nvim',
     },
@@ -27,6 +33,15 @@ return {
       vim.api.nvim_create_user_command('SessDelete', function(_)
         vim.cmd([[SessionManager delete_session]])
       end, { desc = 'Deletes a session' })
+    end,
+    init = function()
+      vim.api.nvim_create_autocmd('VimEnter', {
+        callback = function()
+          if vim.fn.argc() == 0 then
+            require('session_manager').load_current_dir_session()
+          end
+        end
+      })
     end,
   }
 }
