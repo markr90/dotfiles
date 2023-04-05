@@ -101,6 +101,7 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
 )
 
 local function lsp_setup()
+  require('renamer').setup({})
   -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
   local cmp = require('cmp')
   cmp.setup(cmp_opt())
@@ -164,6 +165,8 @@ return {
       'Hoffs/omnisharp-extended-lsp.nvim',
       'L3MON4D3/LuaSnip',
       'saadparwaiz1/cmp_luasnip',
+      'nvim-lua/plenary.nvim',
+      'filipdutescu/renamer.nvim',
     },
     config = lsp_setup,
     event = { 'BufReadPre', 'BufNewFile' },

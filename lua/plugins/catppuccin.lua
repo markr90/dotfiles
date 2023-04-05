@@ -29,7 +29,10 @@ local function setup_theme()
       barbar = true,
     }
   })
-
+  -- local colors = require("catppuccin.palettes").get_palette()
+  --
+  -- vim.cmd('hi MiniCursorwordCurrent guibg=' .. colors.surface0 .. ' gui=none')
+  -- vim.cmd('hi MiniCursorword guibg=' .. colors.surface0 .. ' gui=none')
   vim.cmd.colorscheme 'catppuccin-mocha'
 end
 
