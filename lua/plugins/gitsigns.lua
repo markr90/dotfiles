@@ -6,7 +6,8 @@ return {
     },
     event = { 'BufReadPre', 'BufNewFile' },
     config = function()
-      require("scrollbar.handlers.gitsigns").setup()
+      require('gitsigns').setup({})
+      require("scrollbar.handlers.gitsigns").setup({})
     end
   }
 }
