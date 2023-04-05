@@ -76,12 +76,48 @@ local function cmp_opt()
   }
 end
 --
+local signs = require('gehaktmolen.constants').signs
+
+vim.fn.sign_define("DiagnosticSignError",
+  { text = signs.error, texthl = "DiagnosticSignError", numhl = 'DiagnosticSignError' })
+vim.fn.sign_define("DiagnosticSignWarn",
+  { text = signs.error, texthl = "DiagnosticSignWarn", numhl = 'DiagnosticSignWarn' })
+vim.fn.sign_define("DiagnosticSignInfo",
+  { text = signs.error, texthl = "DiagnosticSignInfo", numhl = 'DiagnosticSignInfo' })
+vim.fn.sign_define("DiagnosticSignHint",
+  { text = signs.error, texthl = "DiagnosticSignHint", numhl = 'DiagnosticSignHint' })
+local _border = require('gehaktmolen.constants').border
+
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+  vim.lsp.handlers.hover, {
+    border = _border
+  }
+)
+
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+  vim.lsp.handlers.signature_help, {
+    border = _border
+  }
+)
+
 local function lsp_setup()
   -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
   local cmp = require('cmp')
   cmp.setup(cmp_opt())
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+
+  -- snippets
+  local ls = require('luasnip')
+  ls.config.set_config({
+    region_check_events = "InsertEnter",
+    delete_check_events = "TextChanged,InsertLeave",
+  })
+  require('luasnip.loaders.from_vscode').lazy_load({
+    paths = {
+      './snippets'
+    }
+  })
 
   -- Setup mason so it can manage external tooling
   require('mason').setup()
@@ -105,7 +141,7 @@ local function lsp_setup()
       require('lspconfig').omnisharp.setup({
         capabilities = capabilities,
         on_attach = require('gehaktmolen.on-attach').on_attach,
-        settings = servers["omnisharp"],
+        settings = {},
         handlers = {
           ["textDocument/definition"] = require('omnisharp_extended').handler,
         },
@@ -113,30 +149,6 @@ local function lsp_setup()
       })
     end,
   }
-  local signs = require('gehaktmolen.constants').signs
-
-  vim.fn.sign_define("DiagnosticSignError",
-    { text = signs.error, texthl = "DiagnosticSignError", numhl = 'DiagnosticSignError' })
-  vim.fn.sign_define("DiagnosticSignWarn",
-    { text = signs.error, texthl = "DiagnosticSignWarn", numhl = 'DiagnosticSignWarn' })
-  vim.fn.sign_define("DiagnosticSignInfo",
-    { text = signs.error, texthl = "DiagnosticSignInfo", numhl = 'DiagnosticSignInfo' })
-  vim.fn.sign_define("DiagnosticSignHint",
-    { text = signs.error, texthl = "DiagnosticSignHint", numhl = 'DiagnosticSignHint' })
-
-  local _border = require('gehaktmolen.constants').border
-
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-    vim.lsp.handlers.hover, {
-      border = _border
-    }
-  )
-
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-    vim.lsp.handlers.signature_help, {
-      border = _border
-    }
-  )
 end
 
 return {
@@ -155,5 +167,6 @@ return {
     },
     config = lsp_setup,
     event = { 'BufReadPre', 'BufNewFile' },
+    cmd = { 'Mason' },
   }
 }
