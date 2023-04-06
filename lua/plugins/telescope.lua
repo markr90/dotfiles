@@ -11,6 +11,10 @@ local function fuzzy_find_in_open_buffers() -- You can pass additional configura
   }))
 end
 
+local function find_files()
+ require('telescope.builtin').find_files()
+end
+
 return {
   {
     'nvim-telescope/telescope.nvim',
@@ -19,7 +23,18 @@ return {
       'nvim-lua/plenary.nvim',
     },
     config = function()
-      require('telescope').setup({})
+      require('telescope').setup({
+        pickers = {
+          find_files = {
+            find_command = {'rg', '--files', '--hidden', '-g', '!.git'},
+          },
+          live_grep = {
+            additional_args = function(opts)
+              return {'--hidden', '-g', '!.git'}
+            end,
+          },
+        },
+      })
     end,
     keys = {
       {
@@ -29,7 +44,7 @@ return {
       },
       {
         '<C-p>',
-        function() require('telescope.builtin').find_files() end,
+        function() find_files() end,
         desc = 'Search for files in project directory'
       },
       {
@@ -54,7 +69,7 @@ return {
           local bufferPath = vim.fn.expand('%:p')
           if vim.fn.isdirectory(bufferPath) ~= 0 then
             vim.api.nvim_buf_delete(0, { force = true })
-            require('telescope.builtin').find_files()
+            find_files()
           end
         end,
       })

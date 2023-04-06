@@ -7,7 +7,6 @@ local opts = {
   minimum_padding = 1,
   maximum_padding = 1,
   insert_at_end = true,
-  highlight_current = false,
   icons = {
     diagnostics = {
       [vim.diagnostic.severity.ERROR] = { enabled = true, icon = require('gehaktmolen.constants').signs.error .. ' ' },
