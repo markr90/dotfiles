@@ -19,6 +19,29 @@ local netcore_config = {
   },
 }
 
+local codelldb_adapter_config = {
+  type = 'server',
+  port = '${port}',
+  executable = {
+    -- CHANGE THIS to your path!
+    command = '/home/mark/.local/share/nvim/mason/packages/codelldb/codelldb',
+    args = {"--port", "${port}"},
+  }
+}
+
+local codelldb_config = {
+  {
+    name = "Launch file",
+    type = "codelldb",
+    request = "launch",
+    program = function()
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+    end,
+    cwd = '${workspaceFolder}',
+    stopOnEntry = false,
+  },
+}
+
 vim.g.dotnet_get_startup_path = function()
   if vim.g['project_startup_path'] ~= nil then
     return vim.g['project_startup_path']
@@ -60,9 +83,13 @@ return {
     config = function()
       local dap = require('dap')
       dap.adapters.coreclr = netcore_adapter_config
+      dap.adapters.codelldb = codelldb_adapter_config
 
       dap.configurations.cs = netcore_config
       dap.configurations.fsharp = netcore_config
+      dap.configurations.cpp = codelldb_config
+      dap.configurations.c = dap.configurations.cpp
+      dap.configurations.rust = dap.configurations.cpp
 
       vim.keymap.set('n', '<F10>', require('dap').step_over, { noremap = true, desc = 'Debug step over' })
       vim.keymap.set('n', '<F11>', require('dap').step_into, { noremap = true, desc = 'Debug step into'})

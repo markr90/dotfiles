@@ -54,7 +54,7 @@ else
   })
   vim.api.nvim_create_user_command('Bd', function(_)
     vim.cmd([[bp|bd #]])
-  end, { group = general_init, desc = 'delete buffer and open previous' })
+  end, { desc = 'delete buffer and open previous' })
   vim.api.nvim_create_autocmd('BufEnter', {
     callback = function()
       vim.opt.formatoptions:remove { 'c', 'r', 'o'}
