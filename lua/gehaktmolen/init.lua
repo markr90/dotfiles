@@ -36,17 +36,30 @@ else
       prefix = '',
     },
   })
-  -- global formatting rules
+
+  local general_init = vim.api.nvim_create_augroup('general_init', {})
+
   vim.api.nvim_create_autocmd("BufWritePre", {
     callback = function()
       vim.cmd [[set eol]]
     end,
+    group = general_init,
+    desc = 'Ensure eol is set before writing file',
   })
   vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     pattern = { "*" },
     command = [[%s/\s\+$//e]],
+    group = general_init,
+    desc = 'Remove spaces at end of line',
   })
   vim.api.nvim_create_user_command('Bd', function(_)
     vim.cmd([[bp|bd #]])
-  end, { desc = 'delete buffer and open previous' })
+  end, { group = general_init, desc = 'delete buffer and open previous' })
+  vim.api.nvim_create_autocmd('BufEnter', {
+    callback = function()
+      vim.opt.formatoptions:remove { 'c', 'r', 'o'}
+    end,
+    group = general_init,
+    desc = 'Disable new line comment',
+  })
 end
