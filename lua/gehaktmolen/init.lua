@@ -37,7 +37,7 @@ else
     },
   })
 
-  local general_init = vim.api.nvim_create_augroup('general_init', {})
+  local general_init = vim.api.nvim_create_augroup('GeneralInit', {})
 
   vim.api.nvim_create_autocmd("BufWritePre", {
     callback = function()
