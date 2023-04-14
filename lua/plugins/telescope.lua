@@ -58,6 +58,11 @@ return {
         desc = 'Fuzzy find in open buffers',
       },
       {
+        '<leader>fc',
+        function() require('telescope.builtin').grep_string() end,
+        desc = 'Find word under cursor',
+      },
+      {
         '<leader>fd',
         function() require('telescope.builtin').diagnostics() end,
         desc = 'Search diagnostics',
