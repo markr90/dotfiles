@@ -5,6 +5,9 @@ return {
       'kevinhwang91/nvim-hlslens',
     },
     event = { 'BufEnter' },
+    enabled = function()
+      return not require('gehaktmolen.constants').isVscode()
+    end,
     config = function()
       require('scrollbar').setup({
         handle = {

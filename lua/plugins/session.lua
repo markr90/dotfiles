@@ -10,6 +10,9 @@ return {
     dependencies = {
       'nvim-lua/plenary.nvim',
     },
+    enabled = function()
+      return not require('gehaktmolen.constants').isVscode()
+    end,
     config = function()
       local session_manager = require('session_manager')
       session_manager.setup({

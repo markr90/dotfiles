@@ -5,6 +5,9 @@ return {
       'mfussenegger/nvim-dap',
     },
     keys = '<F5>',
+    enabled = function()
+      return not require('gehaktmolen.constants').isVscode()
+    end,
     config = function()
       local dap, dapui = require("dap"), require("dapui")
 

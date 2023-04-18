@@ -7,6 +7,9 @@ return {
       'TestSuite',
       'TestLast',
       'TestVisit'
-    }
+    },
+    enabled = function()
+      return not require('gehaktmolen.constants').isVscode()
+    end,
   }
 }

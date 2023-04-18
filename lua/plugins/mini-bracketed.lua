@@ -4,21 +4,25 @@ return {
     version = '*',
     event = { 'BufReadPost', 'BufNewFile' },
     config = function()
+      local isVscode = require('gehaktmolen.constants').isVscode()
+      local conditional_bind = function(kb)
+        return isVscode and '' or kb
+      end
       require('mini.bracketed').setup(
         {
-          buffer     = { suffix = 'b', options = {} },
+          buffer     = { suffix = conditional_bind('b'), options = {} },
           comment    = { suffix = 'c', options = {} },
           conflict   = { suffix = 'x', options = {} },
-          diagnostic = { suffix = 'd', options = {} },
+          diagnostic = { suffix = conditional_bind('d'), options = {} },
           file       = { suffix = '', options = {} },
           indent     = { suffix = '', options = {} },
           jump       = { suffix = 'j', options = {} },
           location   = { suffix = 'l', options = {} },
           oldfile    = { suffix = '', options = {} },
           quickfix   = { suffix = 'q', options = {} },
-          treesitter = { suffix = 't', options = {} },
+          treesitter = { suffix = conditional_bind('t'), options = {} },
           undo       = { suffix = '', options = {} },
-          window     = { suffix = 'w', options = {} },
+          window     = { suffix = conditional_bind('w'), options = {} },
           yank       = { suffix = '', options = {} },
         }
       )

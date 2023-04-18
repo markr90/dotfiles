@@ -170,5 +170,8 @@ return {
     config = lsp_setup,
     event = { 'BufReadPre', 'BufNewFile' },
     cmd = { 'Mason' },
+    enabled = function()
+      return not require('gehaktmolen.constants').isVscode()
+    end,
   }
 }

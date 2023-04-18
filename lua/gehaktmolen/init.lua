@@ -1,5 +1,6 @@
 if vim.g.vscode then
   require('gehaktmolen.vscode')
+  require("gehaktmolen.lazy")
 else
   require("gehaktmolen.remap")
   require("gehaktmolen.lazy")

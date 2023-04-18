@@ -80,6 +80,9 @@ return {
     keys = {
       { '<leader>b', function() require('dap').toggle_breakpoint() end, desc = 'Set breakpoint' },
     },
+    enabled = function()
+      return not require('gehaktmolen.constants').isVscode()
+    end,
     config = function()
       local dap = require('dap')
       dap.adapters.coreclr = netcore_adapter_config

@@ -46,5 +46,8 @@ return {
     'nvim-lualine/lualine.nvim',
     opts = opts,
     event = 'VeryLazy',
+    enabled = function()
+      return not require('gehaktmolen.constants').isVscode()
+    end,
   }
 }

@@ -22,6 +22,9 @@ return {
     dependencies = {
       'nvim-lua/plenary.nvim',
     },
+    enabled = function()
+      return not require('gehaktmolen.constants').isVscode()
+    end,
     config = function()
       require('telescope').setup({
         pickers = {
