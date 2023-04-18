@@ -27,8 +27,5 @@ return {
     config = function()
       require('nvim-treesitter.configs').setup(opts)
     end,
-    enable = function()
-      return not require('gehaktmolen.constants').isVscode()
-    end,
   }
 }

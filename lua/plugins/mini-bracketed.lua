@@ -4,9 +4,9 @@ return {
     version = '*',
     event = { 'BufReadPost', 'BufNewFile' },
     config = function()
-      local isVscode = require('gehaktmolen.constants').isVscode()
+      local vscode = require('gehaktmolen.constants').vscode
       local conditional_bind = function(kb)
-        return isVscode and '' or kb
+        return vscode and '' or kb
       end
       require('mini.bracketed').setup(
         {

@@ -9,8 +9,5 @@ return {
       require('gitsigns').setup({})
       -- require("scrollbar.handlers.gitsigns").setup({})
     end,
-    enabled = function()
-      return not require('gehaktmolen.constants').isVscode()
-    end,
   }
 }

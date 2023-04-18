@@ -16,8 +16,5 @@ return {
     'theprimeagen/harpoon',
     config = harpoon_setup,
     event = 'BufReadPost',
-    enabled = function()
-      return not require('gehaktmolen.constants').isVscode()
-    end,
   }
 }

@@ -9,7 +9,5 @@ return {
   isWindows = function()
     return (vim.fn.has('win32') or vim.fn.has('win64')) == 1
   end,
-  isVscode = function()
-    return vim.g.vscode
-  end,
+  vscode = vim.g.vscode,
 }

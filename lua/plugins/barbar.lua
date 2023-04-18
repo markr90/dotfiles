@@ -26,8 +26,5 @@ return {
       require('barbar').setup(opts)
       vim.keymap.set('n', '<C-n>', '<Cmd>BufferPick<CR>', { desc = 'Navigate to buffer' })
     end,
-    enabled = function()
-      return not require('gehaktmolen.constants').isVscode()
-    end,
   },
 }

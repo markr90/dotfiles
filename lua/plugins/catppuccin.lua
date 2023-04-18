@@ -54,8 +54,5 @@ return {
   {
     'catppuccin/nvim',
     config = setup_theme,
-    enabled = function()
-      return not require('gehaktmolen.constants').isVscode()
-    end,
   }
 }

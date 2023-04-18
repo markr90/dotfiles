@@ -8,8 +8,5 @@ return {
     config = function()
       require('treesj').setup({})
     end,
-    enabled = function()
-      return not require('gehaktmolen.constants').isVscode()
-    end,
   }
 }

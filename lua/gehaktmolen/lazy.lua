@@ -11,8 +11,10 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local plugins_to_load = require('gehaktmolen.constants').vscode and 'gehaktmolen.vscode.plugins' or 'plugins'
+
 require('lazy').setup({
-  { import = 'plugins' },
+  { import = plugins_to_load },
 }, {
   performance = {
     rtp = {
@@ -43,7 +45,6 @@ require('lazy').setup({
         "optwin",
         "compiler",
         "bugreport",
-        "ftplugin",
       }
     }
   }

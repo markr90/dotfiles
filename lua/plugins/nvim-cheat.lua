@@ -5,8 +5,5 @@ return {
       'RishabhRD/popfix',
     },
     cmd = 'Cheat',
-    enabled = function()
-      return not require('gehaktmolen.constants').isVscode()
-    end,
   }
 }
