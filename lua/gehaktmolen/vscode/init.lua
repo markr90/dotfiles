@@ -12,6 +12,7 @@ vim.keymap.set('n', '<leader>ee', notify 'workbench.action.focusSideBar', { sile
 vim.keymap.set('n', '<Leader>gr', notify 'references-view.findReferences', { silent = true }) -- language references
 vim.keymap.set('n', '<Leader>dd', notify 'workbench.actions.view.problems', { silent = true }) -- language diagnostics
 vim.keymap.set('n', 'gr', notify 'editor.action.goToReferences', { silent = true })
+vim.keymap.set('n', 'gi', notify 'editor.action.goToImplementation', { silent = true })
 vim.keymap.set('n', '<Leader>rn', notify 'editor.action.rename', { silent = true })
 vim.keymap.set('n', '<Leader>rf', notify 'editor.action.refactor', { silent = true })
 vim.keymap.set('n', '<Leader>fm', notify 'editor.action.formatDocument', { silent = true })
@@ -30,6 +31,21 @@ vim.keymap.set('v', '<Leader>rf', v_notify 'editor.action.refactor', { silent = 
 vim.keymap.set('v', '<Leader>fc', v_notify 'workbench.action.showCommands', { silent = true })
 
 vim.keymap.set('n', '<Leader>gb', notify 'gitlens.toggleLineBlame', { silent = true })
+
+vim.keymap.set('n', '<C-j>', '<Cmd>Tabprevious<CR>', { silent = true, noremap = true })
+vim.keymap.set('n', '<C-k>', '<Cmd>Tabnext<CR>', { silent = true, noremap = true })
+
+vim.keymap.set('v', '<leader>p', '"_dP', { noremap = true, desc = 'Paste without clearing register' })
+vim.keymap.set('n', '<leader>wp', 'viw"_dP', { noremap = true, desc = 'Paste and replace word' })
+vim.keymap.set('n', '<leader>nh', vim.cmd.noh, { noremap = true, desc = 'Remove highlights' })
+
+vim.cmd([[ set clipboard+=unnamedplus ]])
+vim.cmd [[
+  augroup highlight_yank
+  autocmd!
+  au TextYankPost * silent! lua vim.highlight.on_yank({higroup="Visual", timeout=200})
+  augroup END
+]]
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
