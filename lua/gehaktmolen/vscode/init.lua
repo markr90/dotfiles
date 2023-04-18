@@ -22,13 +22,11 @@ vim.keymap.set('n', ']d', notify 'editor.action.marker.next', { silent = true, n
 
 vim.keymap.set('n', '<Leader>fg', notify 'workbench.action.findInFiles', { silent = true }) -- use ripgrep to search files
 vim.keymap.set('n', '<Leader>ew', notify 'workbench.action.toggleSidebarVisibility', { silent = true })
-vim.keymap.set('n', '<Leader>fc', notify 'workbench.action.showCommands', { silent = true }) -- find commands
 vim.keymap.set('n', '<Leader>ff', notify 'workbench.action.quickOpen', { silent = true }) -- find files
 vim.keymap.set('n', '<Leader>tw', notify 'workbench.action.terminal.toggleTerminal', { silent = true }) -- terminal window
 
 vim.keymap.set('v', '<Leader>fm', v_notify 'editor.action.formatSelection', { silent = true })
 vim.keymap.set('v', '<Leader>rf', v_notify 'editor.action.refactor', { silent = true })
-vim.keymap.set('v', '<Leader>fc', v_notify 'workbench.action.showCommands', { silent = true })
 
 vim.keymap.set('n', '<Leader>gb', notify 'gitlens.toggleLineBlame', { silent = true })
 
@@ -39,6 +37,8 @@ vim.keymap.set('v', '<leader>p', '"_dP', { noremap = true, desc = 'Paste without
 vim.keymap.set('n', '<leader>wp', 'viw"_dP', { noremap = true, desc = 'Paste and replace word' })
 vim.keymap.set('n', '<leader>nh', vim.cmd.noh, { noremap = true, desc = 'Remove highlights' })
 
+vim.keymap.set('n', '<leader>b', notify 'editor.debug.action.toggleBreakpoint', { noremap = true, silent = true })
+
 vim.cmd([[ set clipboard+=unnamedplus ]])
 vim.cmd [[
   augroup highlight_yank
@@ -46,6 +46,10 @@ vim.cmd [[
   au TextYankPost * silent! lua vim.highlight.on_yank({higroup="Visual", timeout=200})
   augroup END
 ]]
+
+vim.api.nvim_create_user_command('DeleteBreakpoints', function(_)
+  notify 'workbench.debug.viewlet.action.removeAllBreakpoints'
+end, { desc = 'Delete all breakpoints' })
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
