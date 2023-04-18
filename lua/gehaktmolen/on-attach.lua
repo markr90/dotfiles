@@ -33,7 +33,8 @@ local on_attach = function(client, bufnr)
   nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
 
   -- See `:help K` for why this keymap
-  nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
+  -- nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
+  -- nmap('K', require('pretty_hover').hover, 'Hover Documentation')
   nmap('<leader>dh', vim.lsp.buf.signature_help, 'Signature Documentation')
 
   -- Lesser used LSP functionality
