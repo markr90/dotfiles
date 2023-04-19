@@ -1,8 +1,6 @@
 local pid = vim.fn.getpid()
--- On linux/darwin if using a release build, otherwise under scripts/OmniSharp(.Core)(.cmd)
 local omnisharp_bin = "C:/Users/MarkRaaijmakers/AppData/Local/nvim-data/mason/packages/omnisharp/OmniSharp.exe"
--- on Windows
--- local omnisharp_bin = "/path/to/omnisharp/OmniSharp.exe"
+
 local servers = {
   tsserver = {},
   eslint = {},
@@ -163,7 +161,6 @@ return {
       'joechrisellis/lsp-format-modifications.nvim',
       'Hoffs/omnisharp-extended-lsp.nvim',
       'L3MON4D3/LuaSnip',
-      'saadparwaiz1/cmp_luasnip',
       'nvim-lua/plenary.nvim',
       'filipdutescu/renamer.nvim',
     },
