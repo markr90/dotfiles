@@ -6,4 +6,6 @@ return {
   require('plugins.mini-split'),
   require('plugins.nvim-autopairs'),
   require('plugins.surround'),
+  require('plugins.mini-indentscope'),
+  require('plugins.indent-blankline'),
 }

@@ -2,11 +2,6 @@ return {
   {
     "echasnovski/mini.indentscope",
     event = { "BufReadPre", "BufNewFile" },
-    opts = {
-      -- symbol = "▏",
-      symbol = "│",
-      options = { try_as_border = true },
-    },
     init = function()
       vim.api.nvim_create_autocmd("FileType", {
         pattern = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason" },
@@ -15,7 +10,15 @@ return {
         end,
       })
     end,
-    config = function(_, opts)
+    config = function()
+      local opts = {
+        -- symbol = "▏",
+        symbol = "│",
+        options = { try_as_border = true },
+        draw = {
+          animation = require('mini.indentscope').gen_animation.none(),
+        },
+      }
       require("mini.indentscope").setup(opts)
     end,
   },
