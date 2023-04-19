@@ -53,6 +53,7 @@ end
 return {
   {
     'catppuccin/nvim',
+    name = 'catppuccin',
     config = setup_theme,
   }
 }

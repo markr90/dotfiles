@@ -33,6 +33,7 @@ require('lazy').setup({
         "tar",
         "tarPlugin",
         "rrhelper",
+        "spellfile",
         "spellfile_plugin",
         "vimball",
         "vimballPlugin",
