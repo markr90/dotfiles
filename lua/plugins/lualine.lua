@@ -1,13 +1,12 @@
 local function lualine_setup()
-  local onedarktheme = require('lualine.themes.onedark')
-  local inactive_color = onedarktheme.normal.c.bg
-  onedarktheme.inactive.a.bg = inactive_color
-  onedarktheme.inactive.b.bg = inactive_color
-  onedarktheme.inactive.c.bg = inactive_color
+  -- local onedarktheme = require('lualine.themes.onedark')
+  -- local inactive_color = onedarktheme.normal.c.bg
+  -- onedarktheme.inactive.a.bg = inactive_color
+  -- onedarktheme.inactive.b.bg = inactive_color
+  -- onedarktheme.inactive.c.bg = inactive_color
   require('lualine').setup({
     options = {
-      -- theme = onedarktheme,
-      theme = onedarktheme,
+      theme = 'catppuccin',
       icons_enabled = true,
       component_separators = { left = '', right = '' },
       section_separators = { left = '', right = '' },

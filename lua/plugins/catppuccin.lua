@@ -25,6 +25,7 @@ local function setup_theme()
           BufferInactiveWARN = { bg = mocha.mantle, fg = blend(mocha.yellow) },
           BufferAlternateMod = { bg = '', fg = blend(mocha.yellow) },
           BufferInactiveMod = { bg = '', fg = blend(mocha.yellow) },
+          MiniIndentscopeSymbol = { fg = mocha.overlay0 },
         }
       end,
     },
