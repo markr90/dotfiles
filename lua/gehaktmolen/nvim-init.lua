@@ -43,12 +43,6 @@
     group = general_init,
     desc = 'Ensure eol is set before writing file',
   })
-  vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-    pattern = { "*" },
-    command = [[%s/\s\+$//e]],
-    group = general_init,
-    desc = 'Remove spaces at end of line',
-  })
   vim.api.nvim_create_user_command('Bd', function(_)
     vim.cmd([[bp|bd #]])
   end, { desc = 'delete buffer and open previous' })
