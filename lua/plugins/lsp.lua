@@ -1,5 +1,5 @@
 local pid = vim.fn.getpid()
-local omnisharp_bin = "C:/Users/MarkRaaijmakers/AppData/Local/nvim-data/mason/packages/omnisharp/OmniSharp.exe"
+local omnisharp_bin = "C:/Users/MarkRaaijmakers/AppData/Local/nvim-data/mason/packages/omnisharp/libexec/OmniSharp.exe"
 
 local servers = {
   tsserver = {},
