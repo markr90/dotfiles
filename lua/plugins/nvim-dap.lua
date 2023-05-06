@@ -79,7 +79,6 @@ return {
     'mfussenegger/nvim-dap',
     keys = {
       { '<leader>b', function() require('dap').toggle_breakpoint() end, desc = 'Set breakpoint' },
-      { '<F5>', function() require('dap').continue() end, desc = 'Debug start / continue' },
     },
     config = function()
       local dap = require('dap')
@@ -92,6 +91,7 @@ return {
       dap.configurations.c = dap.configurations.cpp
       dap.configurations.rust = dap.configurations.cpp
 
+      vim.keymap.set('n', '<F5>', require('dap').continue, { noremap = true, desc = 'Debug start / continue' })
       vim.keymap.set('n', '<F10>', require('dap').step_over, { noremap = true, desc = 'Debug step over' })
       vim.keymap.set('n', '<F11>', require('dap').step_into, { noremap = true, desc = 'Debug step into'})
       vim.keymap.set('n', '<F12>', require('dap').step_out, { noremap = true, desc = 'Debug step out' })
