@@ -38,7 +38,7 @@ return {
     end,
     keys = {
       {
-        '<leader>fg',
+        '<C-f>',
         function() require('telescope.builtin').live_grep() end,
         desc = 'Search in files for text',
       },
