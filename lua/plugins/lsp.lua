@@ -4,6 +4,7 @@ local omnisharp_bin = "C:/Users/MarkRaaijmakers/AppData/Local/nvim-data/mason/pa
 local servers = {
   tsserver = {},
   eslint = {},
+  angularls = {},
   jsonls = {},
   rust_analyzer = {
     inlayHints = false,
