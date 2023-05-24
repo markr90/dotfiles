@@ -1,12 +1,10 @@
 return {
   {
-    "kylechui/nvim-surround",
+    "echasnovski/mini.surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
     event = { 'BufReadPost', 'BufNewFile' },
     config = function()
-      require("nvim-surround").setup({
-        -- Configuration here, or leave empty to use defaults
-      })
+      require("mini.surround").setup()
     end,
   }
 }
