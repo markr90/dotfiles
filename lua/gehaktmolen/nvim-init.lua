@@ -9,6 +9,7 @@
   vim.opt.fixeol = true
   vim.opt.termguicolors = true
   vim.opt.hidden = true
+  vim.opt.signcolumn = 'yes'
   vim.cmd([[ set clipboard+=unnamedplus ]])
   vim.cmd [[
 	  augroup highlight_yank

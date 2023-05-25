@@ -3,14 +3,19 @@ return {
     'akinsho/bufferline.nvim',
     dependencies = {
       'nvim-tree/nvim-web-devicons',
-      'catppuccin/nvim',
+      -- 'catppuccin/nvim',
     },
     event = 'BufReadPost',
     config = function()
-      require('bufferline').setup({
-        highlights = require("catppuccin.groups.integrations.bufferline").get(),
+      local bufferline = require('bufferline')
+      bufferline.setup({
+        -- highlights = require("catppuccin.groups.integrations.bufferline").get(),
         options = {
           diagnostics = 'nvim_lsp',
+          style_preset = {
+              bufferline.style_preset.no_italic,
+              bufferline.style_preset.no_bold
+          },
           diagnostics_indicator = function(_, _, diag, context)
             local icons = require('gehaktmolen.constants').signs
             local ret = (diag.error and icons.error .. " " .. diag.error .. " " or "")

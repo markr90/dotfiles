@@ -1,0 +1,15 @@
+return {
+  -- Lazy
+  {
+    "olimorris/onedarkpro.nvim",
+    priority = 1000,
+    config = function()
+      require('onedarkpro').setup({
+        filetypes = {
+          all = false,
+        },
+      })
+      vim.cmd([[colorscheme onedark]])
+    end,
+  }
+}
