@@ -140,7 +140,6 @@ local function lsp_setup()
       require('lspconfig').omnisharp.setup({
         capabilities = capabilities,
         on_attach = require('gehaktmolen.on-attach').on_attach,
-        settings = {},
         handlers = {
           ["textDocument/definition"] = require('omnisharp_extended').handler,
         },
