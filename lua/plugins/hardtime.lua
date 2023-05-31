@@ -7,7 +7,8 @@ return {
         max_count = 3,
         allow_different_key = true,
         help = false,
-        disabled_filetypes = { "neo-tree", "help", "mason" },
+        disabled_filetypes = { "neo-tree", "help", "mason", "fugitive", "lazy" },
+        disabled_keys = {},
       })
     end,
   }

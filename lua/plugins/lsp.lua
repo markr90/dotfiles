@@ -1,6 +1,3 @@
-local pid = vim.fn.getpid()
-local omnisharp_bin = "C:/Users/MarkRaaijmakers/AppData/Local/nvim-data/mason/packages/omnisharp/libexec/OmniSharp.exe"
-
 local servers = {
   tsserver = {},
   eslint = {},
@@ -138,12 +135,9 @@ local function lsp_setup()
     end,
     ["omnisharp"] = function()
       require('lspconfig').omnisharp.setup({
+        cmd = { "dotnet", "C:/dev/omnisharp/OmniSharp.dll" },
         capabilities = capabilities,
         on_attach = require('gehaktmolen.on-attach').on_attach,
-        handlers = {
-          ["textDocument/definition"] = require('omnisharp_extended').handler,
-        },
-        cmd = { omnisharp_bin, '--languageserver', '--hostPID', tostring(pid) },
       })
     end,
   }
