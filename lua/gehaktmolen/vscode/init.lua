@@ -15,8 +15,8 @@ vim.keymap.set('n', '<leader>ee', notify 'workbench.action.focusSideBar', { sile
 vim.keymap.set('n', '<Leader>gr', notify 'references-view.findReferences', { silent = true }) -- language references
 vim.keymap.set('n', '<Leader>dd', notify 'editor.action.showHover', { silent = true }) -- language diagnostics
 vim.keymap.set('n', 'gr', notify 'editor.action.goToReferences', { silent = true })
-vim.keymap.set('n', 'gi', notify 'editor.action.goToImplementation', { silent = true })
-vim.keymap.set('n', 'gd', notify 'editor.action.goToTypeDefinition', { silent = true })
+vim.keymap.set('n', 'gd', notify 'editor.action.goToImplementation', { silent = true })
+vim.keymap.set('n', 'gD', notify 'editor.action.goToTypeDefinition', { silent = true })
 vim.keymap.set('n', '<Leader>rn', notify 'editor.action.rename', { silent = true })
 vim.keymap.set('n', '<Leader>rf', notify 'editor.action.refactor', { silent = true })
 vim.keymap.set('n', '<Leader>fm', notify 'editor.action.formatDocument', { silent = true })
