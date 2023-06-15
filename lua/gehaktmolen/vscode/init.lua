@@ -8,8 +8,6 @@ end
 
 vim.g.mapleader = ' '
 vim.keymap.set('n', '<SPACE>', '<Nop>', { noremap = true })
-vim.keymap.set('n', '<C-d>', '<C-d>zz', { noremap = true, desc = 'Go down half a page' })
-vim.keymap.set('n', '<C-u>', '<C-u>zz', { noremap = true, desc = 'Go up half a page'})
 
 vim.keymap.set('n', '<leader>ee', notify 'workbench.action.focusSideBar', { silent = true })
 vim.keymap.set('n', '<Leader>gr', notify 'references-view.findReferences', { silent = true }) -- language references
