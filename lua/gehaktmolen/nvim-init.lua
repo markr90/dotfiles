@@ -7,7 +7,7 @@
   vim.opt.softtabstop = 4
   vim.opt.expandtab = true
   vim.opt.fixeol = true
-  -- vim.opt.termguicolors = true
+  vim.opt.termguicolors = true
   vim.opt.hidden = true
   vim.opt.signcolumn = 'yes'
   vim.cmd([[ set clipboard+=unnamedplus ]])

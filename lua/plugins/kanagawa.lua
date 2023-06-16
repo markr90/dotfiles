@@ -16,14 +16,7 @@ return {
         overrides = function(colors)
           return {
             ["@variable.builtin"] = { italic = false },
-            -- IndentBlanklineChar = { fg = colors.theme.ui.bg_m2 },
-            IndentBlanklineIndent1 = { fg = colors.theme.ui.bg_m3 },
-            IndentBlanklineIndent2 = { fg = colors.theme.ui.bg_m2 },
-            IndentBlanklineIndent3 = { fg = colors.theme.ui.bg_m1 },
-            IndentBlanklineIndent4 = { fg = colors.theme.ui.bg },
-            IndentBlanklineIndent5 = { fg = colors.theme.ui.bg_p1 },
-            IndentBlanklineIndent6 = { fg = colors.theme.ui.bg_p2 },
-            IndentBlanklineIndent7 = { fg = colors.theme.ui.bg_p3 },
+            IndentBlanklineChar = { fg = colors.theme.ui.bg_p2 },
           }
         end,
         colors = {
