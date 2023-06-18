@@ -2,6 +2,7 @@ local servers = {
   tsserver = {},
   eslint = {},
   angularls = {},
+  omnisharp = {},
   jsonls = {},
   rust_analyzer = {
     inlayHints = false,
@@ -132,13 +133,6 @@ local function lsp_setup()
         on_attach = require('gehaktmolen.on-attach').on_attach,
         settings = servers[server_name],
       }
-    end,
-    ["omnisharp"] = function()
-      require('lspconfig').omnisharp.setup({
-        cmd = { "dotnet", "C:/dev/omnisharp/OmniSharp.dll" },
-        capabilities = capabilities,
-        on_attach = require('gehaktmolen.on-attach').on_attach,
-      })
     end,
   }
 end
