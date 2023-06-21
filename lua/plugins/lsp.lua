@@ -77,11 +77,11 @@ local signs = require('gehaktmolen.constants').signs
 vim.fn.sign_define("DiagnosticSignError",
   { text = signs.error, texthl = "DiagnosticSignError", numhl = 'DiagnosticSignError' })
 vim.fn.sign_define("DiagnosticSignWarn",
-  { text = signs.error, texthl = "DiagnosticSignWarn", numhl = 'DiagnosticSignWarn' })
+  { text = signs.warn, texthl = "DiagnosticSignWarn", numhl = 'DiagnosticSignWarn' })
 vim.fn.sign_define("DiagnosticSignInfo",
-  { text = signs.error, texthl = "DiagnosticSignInfo", numhl = 'DiagnosticSignInfo' })
+  { text = signs.info, texthl = "DiagnosticSignInfo", numhl = 'DiagnosticSignInfo' })
 vim.fn.sign_define("DiagnosticSignHint",
-  { text = signs.error, texthl = "DiagnosticSignHint", numhl = 'DiagnosticSignHint' })
+  { text = signs.hint, texthl = "DiagnosticSignHint", numhl = 'DiagnosticSignHint' })
 local _border = require('gehaktmolen.constants').border
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
