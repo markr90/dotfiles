@@ -1,6 +1,6 @@
 return {
   require('plugins.comment'),
-  require('plugins.leap'),
+  require('plugins.flash'),
   require('plugins.mini-bracketed'),
   require('plugins.mini-jump'),
   require('plugins.mini-split'),

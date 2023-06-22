@@ -9,23 +9,12 @@ local opts = {
       },
     },
     hijack_netrw_behavior = 'open_current',
-    window = {
-      mappings = {
-        ["<leader>zs"] = function(state)
-          local node = state.tree:get_node()
-          if string.find(node.path, '.csproj') then
-            if (vim.g['project_startup_path'] ~= node.path) then
-              vim.g['project_dll_path'] = nil
-            end
-            vim.g['project_startup_path'] = node.path
-            print('Startup path is now: ' .. vim.g['project_startup_path'])
-          end
-        end
-      },
-    },
   },
   window = {
     width = 35,
+    mappings = {
+      ["<esc>"] = "close_window"
+    }
   },
 }
 return {
@@ -37,8 +26,7 @@ return {
       'MunifTanjim/nui.nvim',
     },
     keys = {
-      { "<leader>ew", "<cmd>Neotree show focus<cr>", desc = "Neotree show" },
-      { "<leader>eq", "<cmd>Neotree close<cr>",      desc = "Neotree hide" },
+      { "<leader>ew", "<cmd>Neotree focus float<cr>", desc = "Neotree show" },
     },
     config = function()
       vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
