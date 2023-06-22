@@ -48,9 +48,6 @@
     group = general_init,
     desc = 'Ensure eol is set before writing file',
   })
-  vim.api.nvim_create_user_command('Bd', function(_)
-    vim.cmd([[bp|bd #]])
-  end, { desc = 'delete buffer and open previous' })
   vim.api.nvim_create_autocmd('BufEnter', {
     callback = function()
       vim.opt.formatoptions:remove { 'c', 'r', 'o'}
