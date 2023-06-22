@@ -23,9 +23,11 @@
     virtual_text = {
       severity = { min = vim.diagnostic.severity.WARN }
     },
+    underline = {
+      severity = { min = vim.diagnostic.severity.HINT }
+    },
     signs = true,
     update_in_insert = false,
-    underline = true,
     severity_sort = true,
     float = {
       focusable = false,
