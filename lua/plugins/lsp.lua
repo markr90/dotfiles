@@ -1,6 +1,7 @@
 local servers = {
   tsserver = {},
   eslint = {},
+  cssls = {},
   angularls = {},
   omnisharp = {},
   jsonls = {},

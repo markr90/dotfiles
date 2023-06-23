@@ -8,6 +8,7 @@ local opts = {
   auto_install = true,
   highlight = {
     enable = true,
+    disable = { "css", "scss" },
     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
     -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
     -- Using this option may slow down your editor, and you may see some duplicate highlights.

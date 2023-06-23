@@ -51,7 +51,9 @@ local on_attach = function(client, bufnr)
   end
 
   -- format only modifications for c# files
-  if client.name == 'omnisharp' then
+  if client.name == 'cssls' then
+    client.server_capabilities.semanticTokensProvider = nil
+  elseif client.name == 'omnisharp' then
     local lsp_format_modifications = require('lsp-format-modifications')
     lsp_format_modifications.attach(client, bufnr, { format_on_save = true })
     client.server_capabilities.semanticTokensProvider = {
