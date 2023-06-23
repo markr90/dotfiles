@@ -1,4 +1,4 @@
-vim.cmd([[set ff=unix]])
+-- vim.cmd([[set ff=unix]])
 
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   pattern = { "*" },
