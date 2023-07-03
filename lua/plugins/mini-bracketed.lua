@@ -13,7 +13,7 @@ return {
           buffer     = { suffix = conditional_bind('b'), options = {} },
           comment    = { suffix = 'c', options = {} },
           conflict   = { suffix = 'x', options = {} },
-          diagnostic = { suffix = conditional_bind('d'), options = {} },
+          diagnostic = { suffix = conditional_bind('d'), options = { severity = { min = vim.diagnostic.severity.WARN } } },
           file       = { suffix = '', options = {} },
           indent     = { suffix = '', options = {} },
           jump       = { suffix = 'j', options = {} },
