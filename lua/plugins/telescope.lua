@@ -48,6 +48,11 @@ return {
         desc = 'Search for files in project directory'
       },
       {
+        '<leader>ll',
+        function() require('telescope.builtin').oldfiles() end,
+        desc = 'Search recently opened files'
+      },
+      {
         '<leader>fB',
         fuzzy_find_in_current_buffer,
         desc = 'Fuzzy find in buffer',
@@ -68,16 +73,5 @@ return {
         desc = 'Search diagnostics',
       },
     },
-    init = function()
-      vim.api.nvim_create_autocmd('VimEnter', {
-        callback = function()
-          local bufferPath = vim.fn.expand('%:p')
-          if vim.fn.isdirectory(bufferPath) ~= 0 then
-            vim.api.nvim_buf_delete(0, { force = true })
-            find_files()
-          end
-        end,
-      })
-    end,
   },
 }
