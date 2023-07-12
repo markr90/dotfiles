@@ -25,6 +25,9 @@ return {
       'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
       'MunifTanjim/nui.nvim',
     },
+    cmd = {
+      'Neotree'
+    },
     keys = {
       { "<leader>ew", "<cmd>Neotree focus float<cr>", desc = "Neotree show" },
     },

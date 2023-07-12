@@ -28,20 +28,20 @@ return {
         vim.cmd([[SessionManager save_current_session]])
       end, { desc = 'Saves current session' })
       vim.api.nvim_create_user_command('SessLoad', function(_)
-        vim.cmd([[SessionManager load_last_session]])
+        require('session_manager').load_current_dir_session()
       end, { desc = 'Loads current session' })
       vim.api.nvim_create_user_command('SessDelete', function(_)
         vim.cmd([[SessionManager delete_session]])
       end, { desc = 'Deletes a session' })
     end,
-    init = function()
-      vim.api.nvim_create_autocmd('VimEnter', {
-        callback = function()
-          if vim.fn.argc() == 0 then
-            require('session_manager').load_current_dir_session()
-          end
-        end
-      })
-    end,
+    -- init = function()
+    --   vim.api.nvim_create_autocmd('VimEnter', {
+    --     callback = function()
+    --       if vim.fn.argc() == 0 then
+    --         require('session_manager').load_current_dir_session()
+    --       end
+    --     end
+    --   })
+    -- end,
   }
 }

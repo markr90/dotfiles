@@ -16,6 +16,7 @@ return {
           return {
             ["@variable.builtin"] = { italic = false },
             IndentBlanklineChar = { fg = colors.theme.ui.bg_p2 },
+            MiniIndentscopeSymbol = { fg = colors.palette.waveBlue2 },
           }
         end,
         colors = {

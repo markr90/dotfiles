@@ -36,6 +36,9 @@ return {
         },
       })
     end,
+    cmd = {
+      'Telescope',
+    },
     keys = {
       {
         '<C-f>',

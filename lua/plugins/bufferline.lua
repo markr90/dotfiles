@@ -5,7 +5,7 @@ return {
       'nvim-tree/nvim-web-devicons',
       -- 'catppuccin/nvim',
     },
-    event = 'BufReadPost',
+    -- event = 'BufReadPost',
     config = function()
       local bufferline = require('bufferline')
       bufferline.setup({
