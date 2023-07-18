@@ -152,6 +152,7 @@ return {
       'L3MON4D3/LuaSnip',
       'nvim-lua/plenary.nvim',
       'filipdutescu/renamer.nvim',
+      'saadparwaiz1/cmp_luasnip',
     },
     config = lsp_setup,
     event = { 'BufReadPre', 'BufNewFile' },
