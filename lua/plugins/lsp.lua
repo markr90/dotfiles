@@ -1,9 +1,7 @@
 local servers = {
   tsserver = {},
   eslint = {},
-  cssls = {},
   angularls = {},
-  omnisharp = {},
   jsonls = {},
   rust_analyzer = {
     inlayHints = false,
@@ -148,7 +146,6 @@ return {
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-nvim-lsp-signature-help',
       'joechrisellis/lsp-format-modifications.nvim',
-      'Hoffs/omnisharp-extended-lsp.nvim',
       'L3MON4D3/LuaSnip',
       'nvim-lua/plenary.nvim',
       'filipdutescu/renamer.nvim',
