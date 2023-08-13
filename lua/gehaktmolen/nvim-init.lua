@@ -38,20 +38,3 @@
       prefix = '',
     },
   })
-
-  local general_init = vim.api.nvim_create_augroup('GeneralInit', {})
-
-  vim.api.nvim_create_autocmd("BufWritePre", {
-    callback = function()
-      vim.cmd [[set eol]]
-    end,
-    group = general_init,
-    desc = 'Ensure eol is set before writing file',
-  })
-  vim.api.nvim_create_autocmd('BufEnter', {
-    callback = function()
-      vim.opt.formatoptions:remove { 'c', 'r', 'o'}
-    end,
-    group = general_init,
-    desc = 'Disable new line comment',
-  })

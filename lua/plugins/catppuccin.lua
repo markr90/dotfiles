@@ -11,8 +11,8 @@ local function setup_theme()
         enabled = true,
       },
       neotree = true,
-      barbar = true,
       harpoon = true,
+      bufferline = true
     }
   })
 
