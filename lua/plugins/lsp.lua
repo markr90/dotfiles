@@ -25,6 +25,10 @@ local servers = {
   },
 }
 
+local feedkey = function(key, mode)
+	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
+end
+
 local function cmp_opt()
   local cmp = require('cmp')
   local menu_items = {
@@ -39,7 +43,7 @@ local function cmp_opt()
 
   return {
     completion = {
-      completeopt = "menu,menuone,noinsert",
+      completeopt = "menu,menuone,noinsert,noselect",
     },
     snippet = {
       expand = function(args)
@@ -52,7 +56,6 @@ local function cmp_opt()
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
       ['<C-Space>'] = cmp.mapping.complete {},
       ['<CR>'] = cmp.mapping.confirm {
-        behavior = cmp.ConfirmBehavior.Insert,
         select = false,
       },
       ['<Tab>'] = cmp.mapping(function(fallback)
