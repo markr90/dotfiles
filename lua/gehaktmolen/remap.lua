@@ -8,4 +8,8 @@ vim.keymap.set('n', '<leader>wp', 'viw"_dP', { noremap = true, desc = 'Paste and
 vim.keymap.set('n', '<leader>nh', vim.cmd.noh, { noremap = true, desc = 'Remove highlights' })
 vim.keymap.set('n', '<C-j>', '<Cmd>bp<CR>', { silent = true, noremap = true, desc = 'Go to previous buffer' })
 vim.keymap.set('n', '<C-l>', '<Cmd>bn<CR>', { silent = true, noremap = true, desc = 'Go to next buffer' })
+vim.keymap.set('n', '[b', '<Cmd>bp<CR>', { silent = true, noremap = true, desc = 'Go to previous buffer' })
+vim.keymap.set('n', ']b', '<Cmd>bn<CR>', { silent = true, noremap = true, desc = 'Go to next buffer' })
 vim.keymap.set('n', '<c-w>', function() vim.cmd([[bn|bd #]]) end, { silent = true, noremap = true, desc = 'Close current buffer' })
+vim.keymap.set('n', '[w', '<Cmd>wincmd W<CR>', { silent = true, noremap = true, desc = 'Go to previous window' })
+vim.keymap.set('n', ']w', '<Cmd>wincmd w<CR>', { silent = true, noremap = true, desc = 'Go to next window' })

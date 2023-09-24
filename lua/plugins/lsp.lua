@@ -27,12 +27,23 @@ local servers = {
 
 local function cmp_opt()
   local cmp = require('cmp')
-  local luasnip = require('luasnip')
+  local menu_items = {
+    nvim_lsp = "[LSP]",
+    nvim_lsp_signature_help = "[f]",
+    buffer = "[buf]",
+    path = "[path]",
+    vsnip = "[snip]",
+  }
+
+  local kind_icons = require('gehaktmolen.constants').lsp_kind_icons
 
   return {
+    completion = {
+      completeopt = "menu,menuone,noinsert",
+    },
     snippet = {
       expand = function(args)
-        luasnip.lsp_expand(args.body)
+        vim.fn["vsnip#anonymous"](args.body)
       end,
     },
     preselect = cmp.PreselectMode.None,
@@ -47,8 +58,6 @@ local function cmp_opt()
       ['<Tab>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
-        elseif luasnip.expand_or_jumpable() then
-          luasnip.expand_or_jump()
         else
           fallback()
         end
@@ -56,8 +65,6 @@ local function cmp_opt()
       ['<S-Tab>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
-        elseif luasnip.jumpable(-1) then
-          luasnip.jump(-1)
         else
           fallback()
         end
@@ -65,9 +72,23 @@ local function cmp_opt()
     },
     sources = {
       { name = 'nvim_lsp' },
-      { name = 'luasnip' },
       { name = 'nvim_lsp_signature_help' },
+      { name = "buffer", keyword_length = 5 },
+      { name = "path" },
+      { name = "vim_vsnip" },
     },
+    formatting = {
+      fields = { "kind", "abbr", "menu" },
+      format = function(entry, vim_item)
+        print(vim_item)
+        vim_item.kind = kind_icons[vim_item.kind]
+        vim_item.menu = menu_items[entry.source.name]
+        return vim_item
+      end,
+    },
+    experimental = {
+      ghost_text = true,
+    }
   }
 end
 --
@@ -96,24 +117,12 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
 )
 
 local function lsp_setup()
-  require('renamer').setup({})
+  require('lspkind').init()
+
   -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
   local cmp = require('cmp')
   cmp.setup(cmp_opt())
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-
-  -- snippets
-  local ls = require('luasnip')
-  ls.config.set_config({
-    region_check_events = "InsertEnter",
-    delete_check_events = "TextChanged,InsertLeave",
-  })
-  require('luasnip.loaders.from_vscode').lazy_load({
-    paths = {
-      './snippets'
-    }
-  })
+  local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
   -- Setup mason so it can manage external tooling
   require('mason').setup()
@@ -143,13 +152,11 @@ return {
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
       'hrsh7th/nvim-cmp',
+      'hrsh7th/vim-vsnip',
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-nvim-lsp-signature-help',
-      'joechrisellis/lsp-format-modifications.nvim',
-      'L3MON4D3/LuaSnip',
       'nvim-lua/plenary.nvim',
-      'filipdutescu/renamer.nvim',
-      'saadparwaiz1/cmp_luasnip',
+      'onsails/lspkind.nvim',
     },
     config = lsp_setup,
     event = { 'BufReadPre', 'BufNewFile' },
