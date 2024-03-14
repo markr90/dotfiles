@@ -6,6 +6,7 @@ local servers = {
   rust_analyzer = {
     inlayHints = false,
   },
+  pyright = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },

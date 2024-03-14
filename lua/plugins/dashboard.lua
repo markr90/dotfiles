@@ -41,7 +41,8 @@ return {
               icon = ' ',
               desc = 'Open dotfiles',
               key = 'd',
-              action = 'cd $HOME/AppData/Local/nvim | Telescope find_files'
+              action = 'cd ~/.config/nvim | Telescope find_files',
+              -- action = 'cd $HOME/AppData/Local/nvim | Telescope find_files'
             },
           },
         }
