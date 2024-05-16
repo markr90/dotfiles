@@ -3,10 +3,16 @@ local servers = {
   eslint = {},
   angularls = {},
   jsonls = {},
+  gopls = {},
   rust_analyzer = {
     inlayHints = false,
   },
-  pyright = {},
+  pyright = {
+    python = {
+      analysis = {typeCheckingMode = "off"},
+    },
+  },
+  ruff_lsp = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
@@ -55,14 +61,14 @@ local function cmp_opt()
       ['<CR>'] = cmp.mapping.confirm {
         select = false,
       },
-      ['<Tab>'] = cmp.mapping(function(fallback)
+      ['<C-n>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
         else
           fallback()
         end
       end, { 'i', 's' }),
-      ['<S-Tab>'] = cmp.mapping(function(fallback)
+      ['<C-p>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
         else
@@ -71,7 +77,8 @@ local function cmp_opt()
       end, { 'i', 's' }),
     },
     sources = {
-      { name = 'nvim_lsp' },
+      -- { name = 'copilot' },
+      { name = 'nvim_lsp', dup = 0},
       { name = 'nvim_lsp_signature_help' },
       { name = "buffer", keyword_length = 5 },
       { name = "path" },
@@ -118,6 +125,8 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
 
 local function lsp_setup()
   require('lspkind').init()
+  -- require('copilot').setup({})
+  -- require('copilot_cmp').setup()
 
   -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
   local cmp = require('cmp')
@@ -157,6 +166,9 @@ return {
       'hrsh7th/cmp-nvim-lsp-signature-help',
       'nvim-lua/plenary.nvim',
       'onsails/lspkind.nvim',
+      -- 'github/copilot.vim',
+      -- 'zbirenbaum/copilot.lua',
+      -- 'zbirenbaum/copilot-cmp',
     },
     config = lsp_setup,
     event = { 'BufReadPre', 'BufNewFile' },
